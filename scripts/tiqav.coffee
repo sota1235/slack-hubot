@@ -6,9 +6,9 @@ module.exports = (robot) ->
     request = msg.http(url).query({q: key}).get()
     request (err, res, body) ->
       json = JSON.parse body
-      i = Math.ceil(Math.random() * (json.length - 1))
-      id = json[i].id
-      ext = json[i].ext
+      # i = Math.ceil(Math.random() * (json.length - 1))
+      id = json[0].id
+      ext = json[0].ext
       url = "http://tiqav.com/#{id}.#{ext}?t=#{Date.now()}"
       sourceUrl = json[i].source_url
       msg.send url
