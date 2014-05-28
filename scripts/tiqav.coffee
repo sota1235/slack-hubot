@@ -8,5 +8,8 @@ module.exports = (robot) ->
     request (err, res, body) ->
       json = JSON.parse body
       i = Math.ceil(Math.random() * (json.length - 1))
+      id = json[i].id
+      ext = json[i].ext
+      url = "http://tiqav.com/#{id}.#{ext}"
       sourceUrl = json[i].source_url
-      msg.send sourceUrl
+      msg.send url
