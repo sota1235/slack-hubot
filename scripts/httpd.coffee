@@ -17,8 +17,6 @@
 #   /hubot/info
 #   /hubot/ip
 
-MeCab = require "mecab-async"
-mecab = new MeCab()
 spawn = require('child_process').spawn
 
 module.exports = (robot) ->
