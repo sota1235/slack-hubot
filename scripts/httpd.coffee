@@ -40,7 +40,3 @@ module.exports = (robot) ->
   robot.router.get "/hubot/ip", (req, res) ->
     robot.http('http://ifconfig.me/ip').get() (err, r, body) ->
       res.end body
-
-  robot.router.post "/hubot/tiqav", (req, res) ->
-    console.log req.body
-    res.end body
