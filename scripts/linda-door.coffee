@@ -12,7 +12,10 @@ module.exports = (robot) ->
       url: "#{url}/#{space}",
       form: {tuple: JSON.stringify({type: "door", cmd: cmd})}
     }
-    request.post post_data, (req,res) ->
+    request.post post_data, (err, res) ->
+      if err
+        msg.send "ドアには・・勝てなかったよ（失敗）"
+        return
       msg.send switch cmd
         when "open" then "開けたと思う"
         when "close" then "閉めたと思う"
