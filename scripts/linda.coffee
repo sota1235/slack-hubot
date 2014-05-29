@@ -1,10 +1,9 @@
 spawn = require('child_process').spawn
-
+url = "http://node-linda-base.herokuapp.com/"
 
 module.exports = (robot) ->
-  robot.respond /delta ドア開けて/i, (msg) ->
-    url = "http://node-linda-base.herokuapp.com/delta"
-    child = spawn('/usr/bin/curl', ['-d', 'tuple={"type":"door","cmd":"open"}', url])
+  robot.respond /(deltabo|iota) ドア開けて/i, (msg) ->
+    child = spawn('/usr/bin/curl', ['-d', 'tuple={"type":"door","cmd":"open"}', url+msg.match[1]])
     child.stdout.on 'data', (data) ->
       msg.send "あけたと思う"
 
