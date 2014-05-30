@@ -1,6 +1,11 @@
-config = {
+config =
   url: "http://node-linda-base.herokuapp.com"
-}
+  space: "masuilab"  # main
+  spaces :
+    delta : "デルタ"  # 名前と読み仮名
+    iota  : "イオタ"
+    tau   : "タウ"
+    shokai: "しょうかいハウス"
 
 module.exports = (robot) ->
   LindaClient = require('linda-socket.io').Client
@@ -18,7 +23,9 @@ module.exports = (robot) ->
       cid = null
       callback(err, tuple)
     setTimeout ->
-      ts.cancel cid if cid
+      if cid
+        ts.cancel cid
+        callback "timeout"
     , msec
 
   robot.respond /linda/i, (msg) ->
