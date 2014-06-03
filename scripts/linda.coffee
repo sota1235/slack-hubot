@@ -8,7 +8,7 @@ config =
     shokai: "しょうかいハウス"
 
 module.exports = (robot) ->
-  LindaClient = require('linda-socket.io').Client
+  LindaClient = require('linda').Client
   socket = require('socket.io-client').connect(config.url)
   robot.linda = linda = new LindaClient().connect(socket)
 
