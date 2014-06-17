@@ -56,7 +56,7 @@ module.exports = (robot) ->
       if err
         msg.send err
         return
-      hour = new Date().getHours()+3
+      hour = new Date().getHours()
       response = "#{res.name} #{getDay()}"
       for h in [hour, hour+1]
         minutes = res.schedule[h]?[getDay()]?.map (i) ->
