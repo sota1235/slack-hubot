@@ -50,16 +50,17 @@ getDay = ->
 
 
 module.exports = (robot) ->
-  robot.respond /(バス|bus)\s+(.+)/i, (msg) ->
+  robot.respond /(バス|bus)\s+([^\s]+)\s*(平日|休日|土曜)?/i, (msg) ->
     where = msg.match[2]
+    day = msg.match[3] or getDay()
     getScheduleOfLines where, (err, res) ->
       if err
         msg.send err
         return
       hour = new Date().getHours()
-      response = "#{res.name} #{getDay()}"
+      response = "#{res.name} #{day}"
       for h in [hour, hour+1]
-        minutes = res.schedule[h]?[getDay()]?.map (i) ->
+        minutes = res.schedule[h]?[day]?.map (i) ->
           "#{i}分"
         .join(' ') or 'なし'
         response += "\n#{h}時:  #{minutes}"
