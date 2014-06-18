@@ -1,1 +1,4 @@
-["hubot-weather-ja"]
+[
+  "hubot-sfc-bus",
+  "hubot-weather-ja"
+]
