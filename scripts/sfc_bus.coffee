@@ -1,8 +1,9 @@
 _       = require 'lodash'
 cheerio = require 'cheerio'
 request = require 'request'
+async   = require 'async'
 
-stops =
+STOPS =
   "湘南台":
     "湘南台駅発 慶応大学行": "http://www.kanachu.co.jp/dia/diagram/timetable/cs:0000801156-1/rt:0/nid:00129893/dts:1403028000"
     "本館前発 湘南台駅行": "http://www.kanachu.co.jp/dia/diagram/timetable/cs:0000800141-1/rt:0/nid:00129986/dts:1403028000"
@@ -15,13 +16,17 @@ stops =
 
 ## 路線名で検索
 getScheduleOfLines = (line, callback = ->) ->
-  unless stops.hasOwnProperty line
+  unless STOPS.hasOwnProperty line
     callback "#{line}、そんな名前の路線知らない"
     return
-  for name, url of stops[line]
-    do (name, url) ->
-      getScheduleOfBusStop url, (err, schedule) ->
-        callback err, {name: name, schedule: schedule}
+  async.mapSeries _.keys(STOPS[line]), (name, next) ->
+    getScheduleOfBusStop STOPS[line][name], (err, schedule) ->
+      setTimeout ->
+        next err, {name: name, schedule: schedule}
+      , 1000
+  , (err, res) ->
+    callback err, res
+  return
 
 
 getScheduleOfBusStop = (url, callback = ->) ->
@@ -52,16 +57,20 @@ getDay = ->
 module.exports = (robot) ->
   robot.respond /(バス|bus)\s+([^\s]+)\s*(平日|休日|土曜)?/i, (msg) ->
     where = msg.match[2]
+    who = msg.message.user.name
     day = msg.match[3] or getDay()
-    getScheduleOfLines where, (err, res) ->
+    msg.send "@#{who} #{where}のバス時刻表について調べます"
+    getScheduleOfLines where, (err, schedules) ->
       if err
         msg.send err
         return
       hour = new Date().getHours()
-      response = "#{res.name} #{day}"
-      for h in [hour, hour+1]
-        minutes = res.schedule[h]?[day]?.map (i) ->
-          "#{i}分"
-        .join(' ') or 'なし'
-        response += "\n#{h}時:  #{minutes}"
-      msg.send response
+      msg.send schedules.map (line) ->
+        text = [hour, hour+1].map (h) ->
+          minutes = line.schedule[h]?[day]?.map (i) ->
+            "#{i}分"
+          .join(' ') or 'なし'
+          "#{h}時:  #{minutes}"
+        .join "\n"
+        return "#{line.name} (#{day})\n#{text}"
+      .join "\n"
