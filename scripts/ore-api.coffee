@@ -7,17 +7,26 @@
 # Author:
 #   @shokai
 
-
-request = require 'request'
-base_url = 'http://ore-api.herokuapp.com'
+config =
+  url: 'https://ore-api.herokuapp.com'
 
 module.exports = (robot) ->
+
+  socket = require('socket.io-client').connect config.url
+
+  socket.on 'connect', ->
+    robot.send "#news", "socket.io 接続 - #{config.url}"
+
+  socket.on 'sleep', (event) ->
+    if event.action isnt 'creation'
+      return
+    robot.send "#news", "@#{event.screen_name} が眠りから覚めました"
 
   robot.respond /([a-z\d_\-]+) (起きて|寝て)る.*/i, (msg) ->
     from = msg.message.user.name
     who = msg.match[1]
 
-    robot.http("#{base_url}/#{who}/status.json").get() (err, res, body) ->
+    robot.http("#{config.url}/#{who}/status.json").get() (err, res, body) ->
       if err
         msg.send "@#{from} ore-apiエラー"
         return
