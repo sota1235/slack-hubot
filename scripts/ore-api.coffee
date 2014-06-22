@@ -9,18 +9,20 @@
 
 config =
   url: 'https://ore-api.herokuapp.com'
+  slack:
+    room: "#news"
 
 module.exports = (robot) ->
 
   socket = require('socket.io-client').connect config.url
 
   socket.on 'connect', ->
-    robot.send "#news", "socket.io 接続 - #{config.url}"
+    robot.send config.slack, "socket.io 接続 - #{config.url}"
 
   socket.on 'sleep', (event) ->
     if event.action isnt 'creation'
       return
-    robot.send "#news", "@#{event.screen_name} が眠りから覚めました"
+    robot.send config.slack, "@#{event.screen_name} が眠りから覚めました"
 
   robot.respond /([a-z\d_\-]+) (起きて|寝て)る.*/i, (msg) ->
     from = msg.message.user.name
