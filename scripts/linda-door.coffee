@@ -20,8 +20,8 @@ module.exports = (robot) ->
   robot.respond /(ドア|door)/i, (msg) ->
     msg.send """
     hubotでドアを開ける・閉める
-
-      hubot delta ドア開けて
-      hubot iota ドア閉めて
+    (例)
+    hubot delta ドア開けて
+    hubot iota ドア閉めて
     """
     return

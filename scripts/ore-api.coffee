@@ -16,8 +16,9 @@ module.exports = (robot) ->
 
   socket = require('socket.io-client').connect config.url
 
-  socket.on 'connect', ->
-    robot.send {room: "#test"}, "socket.io 接続 - #{config.url}"
+  if process.env.NODE_ENV isnt 'production'
+    socket.on 'connect', ->
+      robot.send {room: "#test"}, "socket.io 接続 - #{config.url}"
 
   socket.on 'sleep', (event) ->
     if event.action isnt 'creation'

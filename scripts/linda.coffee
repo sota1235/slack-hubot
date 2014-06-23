@@ -14,8 +14,9 @@ module.exports = (robot) ->
 
   robot.linda.config = config
 
-  linda.io.on 'connect', ->
-    robot.send {room: "#news"}, "linda-socket.io(#{config.url})に接続しました"
+  if process.env.NODE_ENV isnt 'production'
+    linda.io.on 'connect', ->
+      robot.send {room: "#news"}, "linda-socket.ioに接続しました #{config.url}"
 
   linda.read_with_timeout = (space_name, tuple, msec, callback = ->) ->
     ts = linda.tuplespace(space_name)
