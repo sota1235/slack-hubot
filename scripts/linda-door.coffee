@@ -15,3 +15,13 @@ module.exports = (robot) ->
         when "close" then "@#{who} 閉めたと思う"
 
     robot.linda.tuplespace(space).write {type: "door", cmd: cmd, who: who}
+    return
+
+  robot.respond /(ドア|door)/i, (msg) ->
+    msg.send """
+    hubotでドアを開ける・閉める
+
+      hubot delta ドア開けて
+      hubot iota ドア閉めて
+    """
+    return
