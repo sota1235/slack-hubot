@@ -17,7 +17,7 @@ module.exports = (robot) ->
   socket = require('socket.io-client').connect config.url
 
   socket.on 'connect', ->
-    robot.send config.slack, "socket.io 接続 - #{config.url}"
+    robot.send {room: "#test"}, "socket.io 接続 - #{config.url}"
 
   socket.on 'sleep', (event) ->
     if event.action isnt 'creation'
