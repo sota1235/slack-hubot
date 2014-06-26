@@ -20,11 +20,18 @@ module.exports = (robot) ->
     socket.on 'connect', ->
       robot.send {room: "#test"}, "socket.io 接続 - #{config.url}"
 
+  ## push from 俺API
   socket.on 'sleep', (event) ->
     if event.action isnt 'creation'
       return
     robot.send config.slack, "@#{event.screen_name} が眠りから覚めました"
 
+  socket.on 'move', (event) ->
+    if event.action isnt 'updation'
+      return
+    robot.send config.slack, "@#{event.screen_name} が活発に活動しています"
+
+  ## slack chat event
   robot.respond /([a-z\d_\-]+) (起きて|寝て)る.*/i, (msg) ->
     from = msg.message.user.name
     who = msg.match[1]
