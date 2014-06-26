@@ -7,6 +7,8 @@
 # Author:
 #   @shokai
 
+_ = require 'lodash'
+
 config =
   url: 'https://ore-api.herokuapp.com'
   slack:
@@ -26,10 +28,16 @@ module.exports = (robot) ->
       return
     robot.send config.slack, "@#{event.screen_name} が眠りから覚めました"
 
-  socket.on 'move', (event) ->
+  notify_move = (event) ->
     if event.action isnt 'updation'
       return
     robot.send config.slack, "@#{event.screen_name} が活発に活動しています"
+
+  # 1時間に1回に間引く
+  notify_move_throttled = _.throttle notify_move, 1000*60*60, trailing: false
+
+  socket.on 'move', notify_move_throttled
+
 
   ## slack chat event
   robot.respond /([a-z\d_\-]+) (起きて|寝て)る.*/i, (msg) ->
