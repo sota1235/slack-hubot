@@ -24,11 +24,33 @@ module.exports = (robot) ->
     socket.on 'connect', ->
       robot.send {room: "#test"}, "socket.io 接続 - #{config.url}"
 
+  ## 睡眠の詳細を取得
+  get_sleep = (screen_name, xid, callback = ->) ->
+    robot.http("#{config.url}/#{screen_name}/sleeps.json?xid=#{xid}").get() (err, res, body) ->
+      if err
+        callback err
+        return
+      try
+        data = JSON.parse body
+      catch err
+        callback err
+        return
+      callback null, data.data
+      return
+
   ## push from 俺API
   socket.on 'sleep', (event) ->
     if event.action isnt 'creation'
       return
     robot.send config.slack, "@#{event.screen_name} が眠りから覚めました"
+    get_sleep event.screen_name, event.event_xid, (err, sleep) ->
+      if err
+        return
+      txt = "睡眠時間 #{sleep.title}"
+      if sleep.details.awakenings > 1
+        txt += "\n#{sleep.details.awakenings}回の二度寝からがんばって起きました"
+      robot.send config.slack, txt
+      return
 
   notify_move = (event) ->
     if event.action isnt 'updation'
