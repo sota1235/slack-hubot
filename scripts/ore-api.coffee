@@ -4,6 +4,8 @@
 # Commands:
 #   hubot [NAME] (起きて|寝て)る？
 #
+#   hubot [NAME] 睡眠時間
+#
 # Author:
 #   @shokai
 
@@ -65,4 +67,30 @@ module.exports = (robot) ->
         else "わからない、不明なステータス (#{data.status})"
 
       msg.send "@#{from} #{who}、#{status}"
+      return
+
+
+  robot.respond /([a-z\d_\-]+) 睡眠/i, (msg) ->
+    from = msg.message.user.name
+    who = msg.match[1]
+
+    robot.http("#{config.url}/#{who}/sleeps.json").get() (err, res, body) ->
+      if err
+        return msg.send "@#{from} ore-api エラー"
+
+      try
+        data = JSON.parse body
+      catch err
+        return msg.send "@#{from} ore-apiのjson parseエラー"
+
+      day = 3
+      total = 0
+      for sleep in data.data.items
+        if sleep.time_updated > Date.now()/1000 - 60*60*24*day
+          total += sleep.details.awake_time - sleep.details.asleep_time
+
+      total = Math.floor(total/60/60)
+      msg.send "@#{who}はここ#{day}日で#{total}時間寝ています"
+      if total < day*6  # せめて6時間睡眠
+        msg.send "もう少し寝た方がいい"
       return
