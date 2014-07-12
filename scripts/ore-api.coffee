@@ -90,7 +90,7 @@ module.exports = (robot) ->
           total += sleep.details.awake_time - sleep.details.asleep_time
 
       total = Math.floor(total/60/60)
-      msg.send "@#{who}はここ#{day}日で#{total}時間寝ています"
+      txt = "@#{who}はここ#{day}日で#{total}時間寝ています"
       if total < day*6  # せめて6時間睡眠
-        msg.send "もう少し寝た方がいい"
-      return
+        txt += "\nもう少し寝た方がいい"
+      return msg.send txt
