@@ -31,6 +31,9 @@
 
 ## DEPLOY
 
+CIが通ったmasterブランチが自動デプロイされます
+
+
 ### プルリクください
 
 - masuilab/slack-hubotにブランチ切ってプルリク
