@@ -1,5 +1,8 @@
 # 増井研Hubot
 
+[![Build Status](https://travis-ci.org/masuilab/slack-hubot.svg?branch=master)](https://travis-ci.org/masuilab/slack-hubot)
+
+
 ### ソースコード
 - https://github.com/masuilab/slack-hubot
 
@@ -11,11 +14,19 @@
 
 ## DEVELOP
 
-1. `scripts/`ディレクトリにプラグインを書く
-2. `bin/hubot`実行、ローカルで起動する
-3. コマンドを入力して動作確認
+1. `npm install`でライブラリをインストール
+2. `scripts/`ディレクトリにプラグインを書く
+3. `bin/hubot`実行、ローカルでチャットを起動する
+4. コマンドを入力して動作確認
 
-- [scripting guide](https://github.com/github/hubot/blob/master/docs/scripting.md)
+- [Scriptingガイド](https://github.com/github/hubot/blob/master/docs/scripting.md)
+
+
+## LINT & TEST
+
+    % npm test
+    # or
+    % grunt
 
 
 ## DEPLOY

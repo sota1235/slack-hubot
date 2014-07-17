@@ -2,6 +2,9 @@
   "name": "masuilab-slack-hubot",
   "version": "0.0.2",
   "private": true,
+  "scripts": {
+    "test": "grunt test"
+  },
   "author": "Takumi Baba",
   "keywords": [
     "github",
@@ -33,6 +36,19 @@
     "lodash": "^2.4.1",
     "request": "^2.36.0",
     "socket.io-client": "~>1.0"
+  },
+  "devDependencies": {
+    "coffeelint": "*",
+    "coffee-errors": "*",
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-coffeelint": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-notify": "*",
+    "grunt-jsonlint": "*",
+    "grunt-simple-mocha": "*",
+    "mocha": "*",
+    "supertest": "*"
   },
   "engines": {
     "node": ">= 0.8.x",
