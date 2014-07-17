@@ -1,4 +1,5 @@
 [
   "hubot-sfc-bus",
-  "hubot-weather-ja"
+  "hubot-weather-ja",
+  "hubot-coveralls"
 ]
