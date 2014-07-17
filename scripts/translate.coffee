@@ -3,7 +3,8 @@
 #
 # Commands:
 #   hubot translate me <phrase> - Searches for a translation for the <phrase> and then prints that bad boy out.
-#   hubot translate me from <source> into <target> <phrase> - Translates <phrase> from <source> into <target>. Both <source> and <target> are optional
+#   hubot translate me from <source> into <target> <phrase>
+#     - Translates <phrase> from <source> into <target>. Both <source> and <target> are optional
 
 languages =
   "af": "Afrikaans",
@@ -73,7 +74,7 @@ languages =
 
 getCode = (language,languages) ->
   for code, lang of languages
-      return code if lang.toLowerCase() is language.toLowerCase()
+    return code if lang.toLowerCase() is language.toLowerCase()
 
 module.exports = (robot) ->
   language_choices = (language for _, language of languages).sort().join('|')

@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 0.10
+notifications:
+  slack:
+    secure: B67K7S6QpcTRQBebMW1FWjTDaXNNi1E3MdSRBA29PH8piQ1pCKRsiV9UOgcZojicCGjV3E49cVHrm2roij1te1bQxytmT/57FNDNJ3S2x1r7tykeIWq2zFzbI7UIHoS7qHaEHfr5Jk4z3Kl1mkExqh8JVvww7RzD5RdD8SA+T/g=
+deploy:
+  provider: heroku
+  api_key:
+    secure: Vk1585nCnLwJ8uK79WCrIHdVA0xvMVxXlv8Umb9kcKpEmEPx+RNQboBixUGia53eabIqmvmMTdshZqbBgNGjI6fme/fMyac4rBzxL/9hlHy7VDXsyfNHJVujjefjZ11ew01tTi6xbgPXhaOnmcc8sDnYNMGoUtRKjsLQHKSAt34=
+  app: masuilab-hubot
