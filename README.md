@@ -9,7 +9,7 @@
 ### herokuで運用中
 
 - http://masuilab-hubot.herokuapp.com/
-- @TakumiBaba @shokai が管理している
+- @TakumiBaba @shokai @nekobato が管理している
 
 
 ## DEVELOP
