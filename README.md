@@ -8,7 +8,7 @@
 
 ### herokuで運用中
 
-- http://masuilab-hubot.herokuapp.com/
+- http://masuilab-hubot2.herokuapp.com/
 - @TakumiBaba @shokai @nekobato が管理している
 
 
