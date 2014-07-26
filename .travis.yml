@@ -7,5 +7,5 @@ notifications:
 deploy:
   provider: heroku
   api_key:
-    secure: Cs3CiMtNwwsnNFaIUM8Ogn4JS0zP0PuiaunowypqVW5UgDnG2GmEgGGs3ilg8HpbC9/j4w6Yiec2pCD6Fe+IHnkbq819cZeJkEK3kLxJ9CNGUWRkvK9iqI3vd1odEjRYbkKh7FoZlLOmhAGrJkKkwzbYwS0n7PONhVkilvCvJIA=
-  app: masuilab-hubot
+    secure: XDrLoUEH6Q75QLLlrac571Jg8dFqdOUr20dLlrvuZHR2vTvJJSGOfdXut0ht88xouh0/fWK8Rr554c6b4MfoLAf1j91jrQbRgiMDwOq8ui0xnxF84LrNmX2q6bQLmiaSz36kfgKIXitDB5oq9JTB6yiK/U9kPalLi6wpQ5tG/fs=
+  app: masuilab-hubot2
