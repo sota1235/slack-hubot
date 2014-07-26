@@ -28,7 +28,7 @@
     "cheerio": "^0.17.0",
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-coveralls": "1.0.5",
-    "hubot-rss-reader": "^0.1.4",
+    "hubot-rss-reader": "^0.1.5",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-sfc-bus": "0.0.3",
     "hubot-slack": "^2.1.0",
