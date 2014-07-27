@@ -6,13 +6,19 @@
 ### ソースコード
 - https://github.com/masuilab/slack-hubot
 
-### herokuで運用中
+### 運用
 
-- http://masuilab-hubot2.herokuapp.com/
-- @TakumiBaba @shokai @nekobato が管理している
+- Herokuで運用中
+  - http://masuilab-hubot2.herokuapp.com
+  - @TakumiBaba @shokai @nekobato が管理している
+- Travis-CIでテスト
+  - https://travis-ci.org/masuilab/slack-hubot
+  - テスト通ったmasterブランチが自動的にHerokuにデプロイされる
 
 
-## DEVELOP
+## 開発する
+
+### このhubotにスクリプトを追加する場合
 
 1. `npm install`でライブラリをインストール
 2. `scripts/`ディレクトリにプラグインを書く
@@ -21,8 +27,14 @@
 
 - [Scriptingガイド](https://github.com/github/hubot/blob/master/docs/scripting.md)
 
+### npmとして実装し、このhubotにインストールする
 
-## LINT & TEST
+`external-scripts.json`と`package.json`を編集し、プルリクください
+
+[hubot-sfc-bus](https://github.com/shokai/hubot-sfc-bus)や[hubot-rss-reader](https://github.com/shokai/hubot-rss-reader)が参考になると思う
+
+## TEST
+今のところcoffeelintを通すのみ
 
     % npm test
     # or
@@ -31,7 +43,7 @@
 
 ## DEPLOY
 
-CIが通ったmasterブランチが自動デプロイされます
+Travis-CIでテスト通ったmasterブランチが自動的にHerokuにデプロイされます
 
 
 ### プルリクください
@@ -42,11 +54,11 @@ CIが通ったmasterブランチが自動デプロイされます
 どっちでも良い
 
 
-### 自分でデプロイしたい
+### 自分でHerokuをいじりたい
 管理者にきいてコラボレーターに入れてもらってください。
 
 
-### masuilab-hubotとは別にインスタンス建ててデプロイする
+### masuilab-hubotとは別にHeroku建ててデプロイする方法
 
     % heroku create
     % git push heroku master
