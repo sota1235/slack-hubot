@@ -63,6 +63,7 @@ Travis-CIでテスト通ったmasterブランチが自動的にHerokuにデプ�
     % heroku create
     % git push heroku master
 
+    % heroku config:set HEROKU_URL=http://(app_name).herokuapp.com
     % heroku config:set NODE_ENV=production
     % heroku config:add TZ=Asia/Tokyo
     % heroku addons:add redistogo:nano
