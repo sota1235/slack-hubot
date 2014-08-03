@@ -11,7 +11,7 @@ config =
 
 module.exports = (robot) ->
 
-  robot.router.post '/gyazz', (req, res) ->
+  robot.router.post '/hubot/gyazz-webhook', (req, res) ->
     res.send 'ok'
     wiki = req.body.wiki
     title = req.body.title
