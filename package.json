@@ -26,7 +26,8 @@
   "dependencies": {
     "async": "^0.9.0",
     "cheerio": "^0.17.0",
-    "diff": "^1.0.8",
+    "debug": "*",
+    "diff": "*",
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-coveralls": "1.0.5",
     "hubot-rss-reader": "^0.3.1",
