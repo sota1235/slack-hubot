@@ -25,7 +25,7 @@ module.exports = (robot) ->
     wiki  = req.body.wiki
     title = req.body.title
     text  = req.body.text
-    unless wiki? and title? and text? and url?
+    unless wiki?.length > 0 and title?.length > 0 and text? and url?.length > 0
       res.status(400).send 'bad request'
       return
 
@@ -45,14 +45,26 @@ module.exports = (robot) ->
     robot.brain.set url, text
 
     unless cache?.length > 0
+      text = remove_gyazz_markup text
       debug notify_text = "#{config.header} 《新規》#{url} 《#{wiki}》\n#{text}"
       robot.send {room: config.room}, notify_text
     else
       addeds = []
       for block in Diff.diffLines cache, text
         if block.added
-          addeds.push block.value.trim()
+          addeds.push remove_gyazz_markup block.value.trim()
       if addeds.length < 1
         return
       debug notify_text = "#{config.header} 《更新》#{url} 《#{wiki}》\n#{addeds.join('\n')}"
       robot.send {room: config.room}, notify_text
+
+
+remove_gyazz_markup = (str, left='【', right='】') ->
+  str.split(/(\[{2,3}[^\[\]]+\]{2,3}]|[\r\n]+)/).map (i) ->
+    if /(\[{2,3}(.+)\]{2,3})/.test i
+      if /\[{2,3}(https?:\/\/.+)\]{2,3}/.test i
+        return i.replace(/^\[{2,3}/g, " ").replace(/\]{2,3}$/g, " ")
+      else
+        return i.replace(/^\[{2,3}/g, left).replace(/\]{2,3}$/g, right)
+    return i
+  .join ''
