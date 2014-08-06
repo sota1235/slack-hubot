@@ -63,8 +63,8 @@ remove_gyazz_markup = (str, left='【', right='】') ->
   str.split(/(\[{2,3}[^\[\]]+\]{2,3}]|[\r\n]+)/).map (i) ->
     if /(\[{2,3}(.+)\]{2,3})/.test i
       if /\[{2,3}(https?:\/\/.+)\]{2,3}/.test i
-        return i.replace(/^\[{2,3}/g, " ").replace(/\]{2,3}$/g, " ")
+        return i.replace(/\[{2,3}/g, " ").replace(/\]{2,3}/g, " ")
       else
-        return i.replace(/^\[{2,3}/g, left).replace(/\]{2,3}$/g, right)
+        return i.replace(/\[{2,3}/g, left).replace(/\]{2,3}/g, right)
     return i
   .join ''
