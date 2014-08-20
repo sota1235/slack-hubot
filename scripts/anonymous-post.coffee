@@ -22,7 +22,7 @@ module.exports = (robot) ->
       to = config.to
     text = args.join(' ')
     robot.send {room: to}, text
-    msg.send "@#{from} #{to}にこっそり「#{text}」って言っておきました"
+    msg.send "@#{from} #{to} にこっそり「#{text}」って言っておきました"
     return
 
   robot.respond /anon$/i, (msg) ->
