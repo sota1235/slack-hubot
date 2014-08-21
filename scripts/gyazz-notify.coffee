@@ -40,7 +40,7 @@ module.exports = (robot) ->
 
 
   notify = (url, wiki, title, text) ->
-    url = "#{url}/#{wiki}/#{title}".replace(' ', '%20')
+    url = "#{url}/#{wiki}/#{title}".replace(/\s/g, '%20')
     cache = robot.brain.get url
     robot.brain.set url, text
 
