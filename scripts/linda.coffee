@@ -1,5 +1,5 @@
 config =
-  url: "http://node-linda-base.herokuapp.com"
+  url: "https://linda-server.herokuapp.com"
   space: "masuilab"  # main
   spaces :
     delta : "デルタ"  # 名前と読み仮名
