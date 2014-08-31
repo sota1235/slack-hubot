@@ -37,18 +37,10 @@ monitorHubot = (bot_url) ->
 
 module.exports = (robot) ->
 
-  robot.respond /monitor/i, (msg) ->
+  robot.respond /monitor$/i, (msg) ->
     for bot in config.bots
       monitorHubot bot
       .then (res) ->
         msg.send "#{res.url} is ok"
       .catch (res) ->
         msg.send "#{config.headers.error} #{res.url} is not ok (statusCode:#{res.statusCode})\n```\n#{res.body}\n```"
-
-
-if process.argv[1] is __filename
-  monitorHubot bot
-  .then (res) ->
-    console.log "#{res.url} is ok"
-  .catch (res) ->
-    console.log "!!!#{res.url} is not ok\n```\n#{res.body}\n```"
