@@ -9,20 +9,24 @@
 
 request = require 'request'
 
-bots = [
-  'http://hinagiku.geta6.net/'
-  'http://masuilab-hubot2.herokuapp.com/'
-  'http://babascript-hubot.herokuapp.com/'
-  'http://nikezono-hubot.herokuapp.com/'
-]
+config =
+  headers :
+    error: ':bangbang:'
+  bots : [
+    'http://hinagiku.geta6.net'
+    'http://masuilab-hubot2.herokuapp.com'
+    'http://babascript-hubot.herokuapp.com'
+    'http://nikezono-hubot.herokuapp.com'
+  ]
 
 module.exports = (robot) ->
 
   robot.respond /monitor/i, (msg) ->
-    for bot in bots
+    for bot in config.bots
       do (bot) ->
-        request.head bot, (err, res) ->
-          if err
-            msg.send "#{bot} not respond"
+        url = "#{bot}/hubot/ping"
+        request.post url, (err, res, body) ->
+          if err or body isnt 'PONG'
+            msg.send "#{config.headers.error} #{bot} is not ok\n```\n#{body}\n```"
           else
             msg.send "#{bot} is ok"
