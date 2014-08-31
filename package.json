@@ -28,6 +28,7 @@
     "cheerio": "^0.17.0",
     "debug": "*",
     "diff": "*",
+    "es6-promise": "^1.0.0",
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-coveralls": "1.0.5",
     "hubot-rss-reader": "^0.3.1",

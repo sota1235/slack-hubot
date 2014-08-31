@@ -7,8 +7,6 @@
 # Author:
 #   @shokai
 
-request = require 'request'
-
 config =
   headers :
     error: ':bangbang:'
@@ -19,14 +17,38 @@ config =
     'http://nikezono-hubot.herokuapp.com'
   ]
 
+
+request   = require 'request'
+{Promise} = require 'es6-promise'
+
+monitorHubot = (bot_url) ->
+  return new Promise (resolve, reject) ->
+    url = "#{bot_url}/hubot/ping"
+    request.post url, (err, res, body) ->
+      promise_res = {
+        statusCode: res.statusCode
+        body: body
+        url: url
+      }
+      if err or body isnt 'PONG'
+        return reject promise_res
+      return resolve promise_res
+
+
 module.exports = (robot) ->
 
   robot.respond /monitor/i, (msg) ->
     for bot in config.bots
-      do (bot) ->
-        url = "#{bot}/hubot/ping"
-        request.post url, (err, res, body) ->
-          if err or body isnt 'PONG'
-            msg.send "#{config.headers.error} #{bot} is not ok\n```\n#{body}\n```"
-          else
-            msg.send "#{bot} is ok"
+      monitorHubot bot
+      .then (res) ->
+        msg.send "#{res.url} is ok"
+      .catch (res) ->
+        msg.send "#{config.headers.error} #{res.url} is not ok (statusCode:#{res.statusCode})\n```\n#{res.body}\n```"
+
+
+if process.argv[1] is __filename
+  monitorHubot bot
+  .then (res) ->
+    console.log "#{res.url} is ok"
+  .catch (res) ->
+    console.log "!!!#{res.url} is not ok\n```\n#{res.body}\n```"
