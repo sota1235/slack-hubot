@@ -19,7 +19,7 @@ config =
 
 
 request   = require 'request'
-{Promise} = require 'es6-promise'
+{Promise} = require 'es6-promise' unless Promise
 
 monitorHubot = (bot_url) ->
   return new Promise (resolve, reject) ->
