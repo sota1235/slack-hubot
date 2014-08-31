@@ -8,6 +8,8 @@
 #   @shokai
 
 config =
+  interval : 20
+  room: "#news"
   headers :
     error: ':bangbang:'
   hubots : [
@@ -26,7 +28,7 @@ monitorHubot = (bot_url, callback = ->) ->
     data =
       statusCode: res?.statusCode
       body: body or '(response body is empty)'
-      url: url
+      url: bot_url
 
     if err
       return callback err, data
@@ -44,3 +46,18 @@ module.exports = (robot) ->
           msg.send "#{res.url} is ok"
           return
         msg.send "#{config.headers.error} #{res.url} is not ok (statusCode:#{res.statusCode})\n```\n#{res.body}\n```"
+
+  last_states = {}
+  setInterval ->
+    for bot in config.hubots
+      monitorHubot bot, (err, res) ->
+        bot_is_ok = !err
+        console.error "#{res.url} : #{bot_is_ok}"
+        if bot_is_ok isnt last_states[res.url]
+          if bot_is_ok
+            robot.send {room: config.room}, "#{res.url} is ok"
+          else
+            robot.send {room: config.room},
+            "#{config.headers.error} #{res.url} is not ok (statusCode:#{res.statusCode})\n```\n#{res.body}\n```"
+        last_states[res.url] = bot_is_ok
+  , config.interval * 1000
