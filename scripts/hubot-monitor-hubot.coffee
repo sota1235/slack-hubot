@@ -1,3 +1,12 @@
+# Description:
+#   hubot-monitor-hubot
+#
+# Commands:
+#   hubot monitor
+#
+# Author:
+#   @shokai
+
 request = require 'request'
 
 bots = [
