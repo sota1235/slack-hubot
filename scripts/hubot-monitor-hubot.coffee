@@ -19,29 +19,28 @@ config =
 
 
 request   = require 'request'
-{Promise} = require 'es6-promise' unless Promise
 
-monitorHubot = (bot_url) ->
-  return new Promise (resolve, reject) ->
-    url = "#{bot_url}/hubot/ping"
-    request.post url, (err, res, body) ->
-      promise_res = {
-        statusCode: res.statusCode
-        body: body
-        url: url
-      }
-      if err or body isnt 'PONG'
-        return reject promise_res
-      return resolve promise_res
+monitorHubot = (bot_url, callback = ->) ->
+  url = "#{bot_url}/hubot/ping"
+  request.post url, (err, res, body) ->
+    data =
+      statusCode: res?.statusCode
+      body: body or '(response body is empty)'
+      url: url
 
+    if err
+      return callback err, data
+    if body isnt 'PONG'
+      return callback true, data
+    callback false, data
 
 module.exports = (robot) ->
 
   robot.respond /monitor$/i, (msg) ->
     msg.send "monitoring #{config.hubots.length} hubots..."
     for bot in config.hubots
-      monitorHubot bot
-      .then (res) ->
-        msg.send "#{res.url} is ok"
-      .catch (res) ->
+      monitorHubot bot, (err, res) ->
+        unless err
+          msg.send "#{res.url} is ok"
+          return
         msg.send "#{config.headers.error} #{res.url} is not ok (statusCode:#{res.statusCode})\n```\n#{res.body}\n```"
