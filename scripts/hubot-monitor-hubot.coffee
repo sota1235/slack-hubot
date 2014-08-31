@@ -10,7 +10,7 @@
 config =
   headers :
     error: ':bangbang:'
-  bots : [
+  hubots : [
     'http://hinagiku.geta6.net'
     'http://masuilab-hubot2.herokuapp.com'
     'http://babascript-hubot.herokuapp.com'
@@ -38,7 +38,8 @@ monitorHubot = (bot_url) ->
 module.exports = (robot) ->
 
   robot.respond /monitor$/i, (msg) ->
-    for bot in config.bots
+    msg.send "monitoring #{config.hubots.length} hubots..."
+    for bot in config.hubots
       monitorHubot bot
       .then (res) ->
         msg.send "#{res.url} is ok"
