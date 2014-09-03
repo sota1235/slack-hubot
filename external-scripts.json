@@ -2,5 +2,6 @@
   "hubot-sfc-bus",
   "hubot-weather-ja",
   "hubot-coveralls",
-  "hubot-rss-reader"
+  "hubot-rss-reader",
+  "hubot-12horoscopes"
 ]
