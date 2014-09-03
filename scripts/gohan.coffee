@@ -32,7 +32,10 @@ getGohan = (callback = ->) ->
     getPages "#{base_url}#{category.link}", (err, pages) ->
       if err
         return callback err
-      pages = _.reject pages, (page) -> /^\/wiki\/Category:/.test page.link
+      pages = _.filter pages, (page) ->
+        !(/^\/wiki\/Category:/.test page.link) and
+        /^\/wiki\/.+/.test(page.link) and
+        page.title?
       gohan = _.sample pages
       callback null, {url: "#{base_url}#{gohan.link}", title: gohan.title}
 
