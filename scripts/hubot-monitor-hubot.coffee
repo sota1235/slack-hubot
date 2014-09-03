@@ -52,7 +52,6 @@ module.exports = (robot) ->
     for bot in config.hubots
       monitorHubot bot, (err, res) ->
         bot_is_ok = !err
-        console.error "#{res.url} : #{bot_is_ok}"
         if bot_is_ok isnt last_states[res.url]
           if bot_is_ok
             robot.send {room: config.room}, "#{res.url} is ok"
