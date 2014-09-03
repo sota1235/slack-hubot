@@ -42,8 +42,7 @@ getGohan = (callback = ->) ->
 
 module.exports = (robot) ->
 
-  robot.respond /ごはん$/i, (msg) ->
-    msg.send "ごはん取得中..."
+  robot.respond /(ごはん|🍚)$/i, (msg) ->
     getGohan (err, gohan) ->
       if err
         msg.send "ごはんエラー #{err}"
