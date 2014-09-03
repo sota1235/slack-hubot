@@ -30,7 +30,7 @@
     "diff": "*",
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-coveralls": "1.0.5",
-    "hubot-rss-reader": "^0.3.1",
+    "hubot-rss-reader": "^0.3.2",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-sfc-bus": "^0.0.4",
     "hubot-slack": "^2.1.0",
