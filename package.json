@@ -35,6 +35,7 @@
     "hubot-sfc-bus": "^0.0.4",
     "hubot-slack": "^2.1.0",
     "hubot-weather-ja": "0.0.1",
+    "hubot-12horoscopes": "0.0.3",
     "linda": "~>1.1",
     "lodash": "^2.4.1",
     "request": "^2.36.0",
