@@ -9,7 +9,8 @@
 # Author:
 #   @shokai
 
-_ = require 'lodash'
+_     = require 'lodash'
+debug = require('debug')('ore-api')
 
 config =
   url: 'https://ore-api.herokuapp.com'
@@ -38,6 +39,18 @@ module.exports = (robot) ->
       callback null, data.data
       return
 
+  get_move = (screen_name, xid, callback = ->) ->
+    robot.http("#{config.url}/#{screen_name}/moves.json?xid=#{xid}").get() (err, res, body) ->
+      if err
+        callback err
+        return
+      try
+        data = JSON.parse body
+      catch err
+        callback err
+        return
+      callback null, data.data
+
   ## push from 俺API
   socket.on 'sleep', (event) ->
     if event.action isnt 'creation'
@@ -53,14 +66,27 @@ module.exports = (robot) ->
       return
 
   notify_move = (event) ->
+    debug "notify_move #{JSON.stringify event}"
     if event.action isnt 'updation'
+      debug 'action is not updation'
       return
-    robot.send config.slack, "@#{event.screen_name} が活発に活動しています"
+    get_move event.screen_name, event.event_xid, (err, move) ->
+      debug move
+      if err or move.details?.steps < 1
+        debug 'no steps data in event'
+        return
+      current_steps = move.details.steps
+      last_steps = robot.brain.get("steps_#{event.screen_name}") or 0
+      if last_steps > current_steps
+        last_steps = 0
+      new_steps = current_steps - last_steps
+      robot.brain.set("steps_#{event.screen_name}", current_steps)
+      robot.send config.slack, "@#{event.screen_name} が#{new_steps}歩運動しました (本日合計#{current_steps}歩)"
 
   # 1時間に1回に間引く
   notify_move_throttled = _.throttle notify_move, 1000*60*60, trailing: false
 
-  socket.on 'move', notify_move_throttled
+  socket.on 'move', notify_move
 
 
   ## slack chat event
