@@ -23,11 +23,11 @@ module.exports = (robot) ->
 
   if process.env.NODE_ENV isnt 'production'
     socket.on 'connect', ->
+      debug "socket.io connect!!"
       robot.send {room: "#test"}, "socket.io 接続 - #{config.url}"
 
-  ## 睡眠の詳細を取得
-  get_sleep = (screen_name, xid, callback = ->) ->
-    robot.http("#{config.url}/#{screen_name}/sleeps.json?xid=#{xid}").get() (err, res, body) ->
+  get_activity = (type, screen_name, xid, callback = ->) ->
+    robot.http("#{config.url}/#{screen_name}/#{type}.json?xid=#{xid}").get() (err, res, body) ->
       if err
         callback err
         return
@@ -39,19 +39,6 @@ module.exports = (robot) ->
       debug data
       callback null, data.data
       return
-
-  get_move = (screen_name, xid, callback = ->) ->
-    robot.http("#{config.url}/#{screen_name}/moves.json?xid=#{xid}").get() (err, res, body) ->
-      if err
-        callback err
-        return
-      try
-        data = JSON.parse body
-      catch err
-        callback err
-        return
-      debug data
-      callback null, data.data
 
   ## push from 俺API
   socket.on 'sleep', (event) ->
@@ -59,7 +46,7 @@ module.exports = (robot) ->
     if event.action isnt 'creation'
       return
     robot.send config.slack, "@#{event.screen_name} が眠りから覚めました"
-    get_sleep event.screen_name, event.event_xid, (err, sleep) ->
+    get_activity "sleeps", event.screen_name, event.event_xid, (err, sleep) ->
       if err
         return
       txt = "睡眠時間 #{sleep.title}"
@@ -69,7 +56,7 @@ module.exports = (robot) ->
       return
 
   notify_move = (event) ->
-    get_move event.screen_name, event.event_xid, (err, move) ->
+    get_activity "moves", event.screen_name, event.event_xid, (err, move) ->
       if err or move.details?.steps < 1
         debug 'no steps data in event'
         return
