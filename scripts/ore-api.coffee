@@ -66,7 +66,7 @@ module.exports = (robot) ->
         last_steps = 0
       new_steps = current_steps - last_steps
       robot.brain.set("steps_#{event.screen_name}", current_steps)
-      robot.send config.slack, "@#{event.screen_name} が#{new_steps}歩運動しました (本日合計#{current_steps}歩)"
+      robot.send config.slack, "@#{event.screen_name} が#{new_steps}歩運動しました (本日合計#{current_steps}歩 #{move.details.km}km)"
 
   # 30分に1回に間引く
   notify_move_throttled = _.throttle notify_move, 1000*60*30, trailing: false
