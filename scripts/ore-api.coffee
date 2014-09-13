@@ -9,7 +9,6 @@
 # Author:
 #   @shokai
 
-_     = require 'lodash'
 debug = require('debug')('hubot-ore-api')
 
 config =
@@ -55,7 +54,12 @@ module.exports = (robot) ->
       robot.send config.slack, txt
       return
 
+  last_notify_at = {}
   notify_move = (event) ->
+    if Date.now() - (last_notify_at[event.screen_name] or 0) < 1000*60*60  # 1時間毎に間引く
+      debug "throttled #{event.screen_name}'s notify_move"
+      return
+    last_notify_at[event.screen_name] = Date.now()
     get_activity "moves", event.screen_name, event.event_xid, (err, move) ->
       if err or move.details?.steps < 1
         debug 'no steps data in event'
@@ -72,13 +76,10 @@ module.exports = (robot) ->
         txt = "@#{event.screen_name} が活発に活動しています"
       robot.send config.slack, txt
 
-  # 60分に1回に間引く
-  notify_move_throttled = _.throttle notify_move, 1000*60*60, trailing: false
-
   socket.on 'move', (event) ->
     debug "move - #{JSON.stringify event}"
     if event.action is 'updation'
-      notify_move_throttled event
+      notify_move event
 
 
   ## slack chat event
