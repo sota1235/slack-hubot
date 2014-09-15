@@ -54,6 +54,10 @@ module.exports = (robot) ->
       robot.send config.slack, txt
       return
 
+  socket.on 'enter_sleep_mode', (event) ->
+    debug "enter_sleep_mode - #{JSON.stringify event}"
+    robot.send config.slack, "@#{event.screen_name} が眠りにつきました"
+
   last_notify_at = {}
   notify_move = (event) ->
     if Date.now() - (last_notify_at[event.screen_name] or 0) < 1000*60*60  # 1時間毎に間引く
