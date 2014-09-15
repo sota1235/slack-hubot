@@ -74,8 +74,8 @@ module.exports = (robot) ->
       if last_steps > current_steps
         last_steps = 0
       new_steps = current_steps - last_steps
-      txt = if new_steps > 0
-        "@#{event.screen_name} が#{new_steps}歩運動しました (本日合計#{current_steps}歩 #{move.details.km}km)"
+      if new_steps > 0
+        txt = "@#{event.screen_name} が#{new_steps}歩運動しました (本日合計#{current_steps}歩 #{move.details.km}km)"
       else
         txt = "@#{event.screen_name} が活発に活動しています"
       robot.send config.slack, txt
