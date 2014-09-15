@@ -34,7 +34,7 @@
     "hubot-gohan": "0.0.1",
     "hubot-rss-reader": "^0.3",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
-    "hubot-sfc-bus": "^0.1.3",
+    "hubot-sfc-bus": "^0.1.4",
     "hubot-slack": "^2.1.0",
     "hubot-weather-ja": "0.0.1",
     "linda": "~>1.1",
