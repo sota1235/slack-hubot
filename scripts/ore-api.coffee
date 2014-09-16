@@ -79,7 +79,7 @@ module.exports = (robot) ->
         last_steps = 0
       new_steps = current_steps - last_steps
       if new_steps > 0
-        txt = "@#{event.screen_name} が#{new_steps}歩運動しました (本日合計#{current_steps}歩 #{move.details.km}km)"
+        txt = "@#{event.screen_name} が#{new_steps}歩移動しました (本日合計#{current_steps}歩 #{move.details.km}km)"
       else
         txt = "@#{event.screen_name} が活発に活動しています"
       robot.send config.slack, txt
@@ -89,6 +89,20 @@ module.exports = (robot) ->
     if event.action is 'updation'
       notify_move event
 
+  socket.on 'workout', (event) ->
+    debug "workout - #{JSON.stringify event}"
+    get_activity "workouts", event.screen_name, event.event_xid, (err, work) ->
+      if err or !work.details?
+        debug "no workout data in event"
+        return
+      txt = switch event.action
+        when 'creation'
+          "@#{event.screen_name} が運動しました (#{work.title} #{work.details?.km}km #{Math.floor work.details?.calories}カロリー)"
+        when 'updation'
+          "@#{event.screen_name} が運動しています (#{work.title} #{work.details?.km}km)"
+      if work.image?.length > 0
+        txt += "\nhttp://jawbone.com#{work.image}"
+      robot.send config.slack, txt
 
   ## slack chat event
   robot.respond /([a-z\d_\-]+) (起きて|寝て)る.*/i, (msg) ->
