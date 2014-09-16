@@ -44,15 +44,19 @@ module.exports = (robot) ->
     debug "sleep - #{JSON.stringify event}"
     if event.action isnt 'creation'
       return
-    robot.send config.slack, "@#{event.screen_name} が眠りから覚めました"
     get_activity "sleeps", event.screen_name, event.event_xid, (err, sleep) ->
       if err
         return
-      txt = "睡眠時間 #{sleep.title}"
+      txt = "#{event.screen_name} の睡眠時間 #{sleep.title}"
       if sleep.details.awakenings > 1
         txt += "\n#{sleep.details.awakenings}回の二度寝からがんばって起きました"
       robot.send config.slack, txt
       return
+
+  socket.on 'exit_sleep_mode', (event) ->
+    debug "exit_sleep_mode - #{JSON.stringify event}"
+    robot.send config.slack, "@#{event.screen_name} が眠りから覚めました"
+
 
   socket.on 'enter_sleep_mode', (event) ->
     debug "enter_sleep_mode - #{JSON.stringify event}"
