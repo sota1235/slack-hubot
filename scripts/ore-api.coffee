@@ -14,7 +14,7 @@ debug = require('debug')('hubot-ore-api')
 config =
   url: 'https://ore-api.herokuapp.com'
   slack:
-    room: "#news"
+    room: "#ore"
 
 module.exports = (robot) ->
 
