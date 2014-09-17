@@ -47,7 +47,7 @@ module.exports = (robot) ->
     get_activity "sleeps", event.screen_name, event.event_xid, (err, sleep) ->
       if err
         return
-      txt = "#{event.screen_name} の睡眠時間 #{sleep.title}"
+      txt = "@#{event.screen_name} の睡眠時間 #{sleep.title}"
       if sleep.details.awakenings > 1
         txt += "\n#{sleep.details.awakenings}回の二度寝からがんばって起きました"
       robot.send config.slack, txt
