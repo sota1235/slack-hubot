@@ -31,7 +31,7 @@
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-12horoscopes": "0.0.4",
     "hubot-coveralls": "1.0.5",
-    "hubot-gohan": "0.0.1",
+    "hubot-gohan": "0.0.3",
     "hubot-rss-reader": "^0.3",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-sfc-bus": "^0.1.4",
