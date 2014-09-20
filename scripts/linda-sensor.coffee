@@ -1,3 +1,15 @@
+# Description:
+#   lindaでセンサー値を読む
+#
+# Commands:
+#   hubot linda 温度
+#
+#   hubot linda 明るさ
+#
+# Author:
+#   @shokai
+
+
 module.exports = (robot) ->
 
   robot.respond /([a-z0-9_\-]+) 温度/i, (msg) ->

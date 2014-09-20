@@ -1,3 +1,15 @@
+# Description:
+#   linda
+#
+# Commands:
+#   hubot [NAME] (起きて|寝て)る？
+#
+#   hubot [NAME] 睡眠時間
+#
+# Author:
+#   @shokai
+
+
 config =
   url: "https://linda-server.herokuapp.com"
   space: "masuilab"  # main

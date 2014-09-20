@@ -1,3 +1,12 @@
+# Description:
+#   lindaでドアを開ける
+#
+# Commands:
+#   hubot [tuplespace] ドア(開けて|閉めて)
+#
+# Author:
+#   @shokai
+
 module.exports = (robot) ->
   robot.respond /([a-z_\-]+) ドア(開けて|閉めて)/i, (msg) ->
     who = msg.message.user.name

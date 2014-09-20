@@ -1,3 +1,11 @@
+# Description:
+#   tiqav検索
+#
+# Commands:
+#   tiqav [WORD]
+#
+# Author:
+#   ???
 
 module.exports = (robot) ->
   robot.respond /tiqav (.*)/i, (msg) ->

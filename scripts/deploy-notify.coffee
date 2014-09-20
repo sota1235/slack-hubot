@@ -1,4 +1,10 @@
+# Description:
+#   デプロイ通知
+#
+# Author:
+#   @shokai
+
+
 module.exports = (robot) ->
 
-  robot.router.post "/hubot/deploy", (req, res) ->
-    robot.send {room: "#news"}, "デプロイされた"
+  robot.send {room: "#news"}, "Hubot、起動しました"

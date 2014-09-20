@@ -1,3 +1,15 @@
+# Description:
+#   lindaからMacのsayコマンドを使う
+#
+# Commands:
+#   hubot [tuplespace] say おはよう
+#
+#   hubot say ごきげんよう
+#
+# Author:
+#   @shokai
+
+
 _ = require 'lodash'
 
 module.exports = (robot) ->

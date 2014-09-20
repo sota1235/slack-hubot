@@ -1,4 +1,11 @@
-## 1つランダムに選ぶ
+# Description:
+#   1つランダムに選ぶ
+#
+# Commands:
+#   hubot choice ざんまい かずすけ まるたか かずどん
+#
+# Author:
+#   @shokai
 
 _ = require 'lodash'
 
