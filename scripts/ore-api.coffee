@@ -10,6 +10,7 @@
 #   @shokai
 
 debug = require('debug')('hubot-ore-api')
+urlExpander = require 'expand-url'
 
 config =
   url: 'https://ore-api.herokuapp.com'
@@ -101,7 +102,14 @@ module.exports = (robot) ->
         when 'updation'
           "@#{event.screen_name} が運動しています (#{work.title} #{work.details?.km}km)"
       if work.image?.length > 0
-        txt += "\nhttp://jawbone.com#{work.image}"
+        shortUrl = "http://jawbone.com#{work.image}"
+        urlExpander.expand shortUrl, (err, imgUrl) ->
+          if err
+            imgUrl = shortUrl
+          txt += "\n#{imgUrl}"
+          robot.send config.slack, txt
+        return
+
       robot.send config.slack, txt
 
   ## slack chat event
