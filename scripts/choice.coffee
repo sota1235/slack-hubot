@@ -12,5 +12,5 @@ _ = require 'lodash'
 module.exports = (robot) ->
   robot.respond /choice (.+)/i, (msg) ->
     items = msg.match[1].split(/\s+/)
-    choice = _.find items, (v) -> v in ['山田', 'yamada', 'やまだ'] || _.sample items
+    choice = _.sample items
     msg.send "厳正な抽選の結果、「#{choice}」に決まりました"
