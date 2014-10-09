@@ -10,6 +10,7 @@ module.exports = (robot) ->
 
     who = msg.message.user.name
     url = msg.match[1]
-    return if url is decodeURI url
-    url = decodeURI(url).replace /[ <>]/g, (c) -> encodeURI c
+    url_decoded = decodeURI url
+    return if url is url_decoded
+    url = url_decoded.replace /[ <>]/g, (c) -> encodeURI c
     msg.send "@#{who} 日本語でおｋ\n#{url}"
