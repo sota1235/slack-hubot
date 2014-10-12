@@ -45,7 +45,7 @@ module.exports = (robot) ->
     robot.brain.set url, text
 
     unless cache?.length > 0
-      text = remove_gyazz_markup text
+      text = remove_gyazz_markup(text).trim()
       debug notify_text = "#{config.header} 《新規》#{url} 《#{wiki}》\n#{text}"
       robot.send {room: config.room}, notify_text
     else
