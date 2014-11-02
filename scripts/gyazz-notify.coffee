@@ -1,5 +1,6 @@
 # Description:
 #   Gyazz更新通知
+#   /hubot/gyazz-webhook へのPOSTリクエストを受信
 #
 # Dependencies:
 #   "diff":  "*"
@@ -25,6 +26,9 @@ module.exports = (robot) ->
     wiki  = req.body.wiki
     title = req.body.title
     text  = req.body.text
+    room  = req.query.room or config.room
+    unless /^#.+/.test room
+      room = "##{room}"
     unless wiki?.length > 0 and title?.length > 0 and text? and url?.length > 0
       res.status(400).send 'bad request'
       return
@@ -35,11 +39,11 @@ module.exports = (robot) ->
 
     clearTimeout timeout_cids[key]
     timeout_cids[key] = setTimeout ->
-      notify url, wiki, title, text
+      notify url, wiki, title, text, room
     , config.interval
 
 
-  notify = (url, wiki, title, text) ->
+  notify = (url, wiki, title, text, room) ->
     url = "#{url}/#{wiki}/#{title}".replace /[\s<>]/g, (c) -> encodeURI(c)
     cache = robot.brain.get url
     robot.brain.set url, text
@@ -47,7 +51,7 @@ module.exports = (robot) ->
     unless cache?.length > 0
       text = remove_gyazz_markup(text).trim()
       debug notify_text = "#{config.header} 《新規》#{url} 《#{wiki}》\n#{text}"
-      robot.send {room: config.room}, notify_text
+      robot.send {room: room}, notify_text
     else
       addeds = []
       for block in Diff.diffLines cache, text
@@ -56,7 +60,7 @@ module.exports = (robot) ->
       if addeds.length < 1
         return
       debug notify_text = "#{config.header} 《更新》#{url} 《#{wiki}》\n#{addeds.join('\n')}"
-      robot.send {room: config.room}, notify_text
+      robot.send {room: room}, notify_text
 
 
 remove_gyazz_markup = (str, left='【', right='】') ->
