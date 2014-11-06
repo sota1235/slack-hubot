@@ -14,7 +14,8 @@ module.exports = (robot) ->
   robot.hear /ux/i, reply
 
   register_censor = (word) ->
-    robot.hear new RegExp( word.split('').join('.*') ), reply
+    robot.hear new RegExp( word.split('').join('.*'), 'i' ), reply
 
   register_censor 'ユザエクスペリエンス'
   register_censor 'ユザ体験'
+  register_censor 'userexperience'
