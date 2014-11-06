@@ -12,4 +12,9 @@ module.exports = (robot) ->
     msg.send "@#{who} UX1000円"
 
   robot.hear /ux/i, reply
-  robot.hear new RegExp('ユザエクスペリエンス'.split('').join('.*')), reply
+
+  register_censor = (word) ->
+    robot.hear new RegExp( word.split('').join('.*') ), reply
+
+  register_censor 'ユザエクスペリエンス'
+  register_censor 'ユザ体験'
