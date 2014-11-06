@@ -18,4 +18,5 @@ module.exports = (robot) ->
 
   register_censor 'ユザエクスペリエンス'
   register_censor 'ユザ体験'
+  register_censor 'ユエックス'
   register_censor 'userexperience'
