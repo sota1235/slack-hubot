@@ -9,7 +9,9 @@ module.exports = (robot) ->
   reply = (msg) ->
 
     who = msg.message.user.name
-    msg.send "@#{who} UX1000円"
+    count = (robot.brain.get(who) or 0) + 1
+    robot.brain.set who, count
+    msg.send "@#{who} UX#{count*1000}円"
 
   robot.hear /ux/i, reply
 
