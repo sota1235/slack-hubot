@@ -50,7 +50,7 @@ module.exports = (robot) ->
 
     unless cache?.length > 0
       text = remove_gyazz_markup(text).trim()
-      debug notify_text = "#{config.header} 《新規》#{url} 《#{wiki}》\n#{text}"
+      debug notify_text = "#{config.header} 《新規》#{url} 《#{wiki}/#{title}》\n#{text}"
       robot.send {room: room}, notify_text
     else
       addeds = []
@@ -59,7 +59,7 @@ module.exports = (robot) ->
           addeds.push remove_gyazz_markup block.value.trim()
       if addeds.length < 1
         return
-      debug notify_text = "#{config.header} 《更新》#{url} 《#{wiki}》\n#{addeds.join('\n')}"
+      debug notify_text = "#{config.header} 《更新》#{url} 《#{wiki}/#{title}》\n#{addeds.join('\n')}"
       robot.send {room: room}, notify_text
 
 
