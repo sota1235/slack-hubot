@@ -31,7 +31,7 @@ module.exports = (robot) ->
       labels: ["fromHubot"]
     github.post 'https://api.github.com/repos/masuilab/todo/issues', query_param
     , (issue) ->
-      text = issue.html_url or "issue create error"
+      text = "issue created\n#{issue.html_url}" or "issue create error"
       debug text
       msg.send text
 
