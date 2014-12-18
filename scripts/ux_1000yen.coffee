@@ -3,15 +3,23 @@
 #
 # Author:
 #   @shokai
+#   @nikezono
 
 module.exports = (robot) ->
 
   reply = (msg) ->
 
     who = msg.message.user.name
-    count = (robot.brain.get(who) or 0) + 1
-    robot.brain.set who, count
-    msg.send "@#{who} UX#{count*1000}円"
+    hash = robot.brain.get('ux') or {}
+    hash[who] = (hash[who] or 0) + 1
+    robot.brain.set 'ux', hash
+    msg.send "@#{who} UX#{hash[who]*1000}円"
+
+  robot.respond /募金$/i, (msg) ->
+    texts = ["UX募金 ただいまの募金額"]
+    for who, count of robot.brain.get('ux')
+      texts.push "@#{who} #{count*1000}円" if count > 0
+    msg.send texts.join '\n'
 
   robot.hear /ux/i, reply
 
