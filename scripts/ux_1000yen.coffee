@@ -5,7 +5,6 @@
 #   @shokai
 #   @nikezono
 
-# A
 module.exports = (robot) ->
 
   reply = (msg) ->
