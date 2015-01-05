@@ -9,11 +9,10 @@
 
 config =
   interval : 20
-  room: "#news"
+  room: "news"
   headers :
     error: ':bangbang:'
   hubots : [
-    'http://hinagiku.geta6.net'
     'http://masuilab-hubot2.herokuapp.com'
     'http://babascript-hubot.herokuapp.com'
     'http://nikezono-hubot.herokuapp.com'

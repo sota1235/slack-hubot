@@ -15,7 +15,7 @@ urlExpander = require 'expand-url'
 config =
   url: 'https://ore-api.herokuapp.com'
   slack:
-    room: "#ore"
+    room: "ore"
 
 module.exports = (robot) ->
 
@@ -24,7 +24,7 @@ module.exports = (robot) ->
   if process.env.NODE_ENV isnt 'production'
     socket.on 'connect', ->
       debug "socket.io connect!!"
-      robot.send {room: "#test"}, "socket.io 接続 - #{config.url}"
+      robot.send {room: "test"}, "socket.io 接続 - #{config.url}"
 
   get_activity = (type, screen_name, xid, callback = ->) ->
     robot.http("#{config.url}/#{screen_name}/#{type}.json?xid=#{xid}").get() (err, res, body) ->

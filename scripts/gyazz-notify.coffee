@@ -13,7 +13,7 @@ Diff = require 'diff'
 debug = require('debug')('hubot:gyazz-notify')
 
 config =
-  room: "#news"
+  room: "news"
   header: ":star:"
   interval: 60000
 
@@ -27,8 +27,6 @@ module.exports = (robot) ->
     title = req.body.title
     text  = req.body.text
     room  = req.query.room or config.room
-    unless /^#.+/.test room
-      room = "##{room}"
     unless wiki?.length > 0 and title?.length > 0 and text? and url?.length > 0
       res.status(400).send 'bad request'
       return
