@@ -26,12 +26,13 @@ module.exports = (robot) ->
 
   robot.linda.config = config
 
-  linda.io.on 'connect', ->
-    cid = setInterval ->
-      return if typeof robot?.send isnt 'function'
-      robot.send {room: "news"}, "linda-socket.ioに接続しました #{config.url}"
-      clearInterval cid
-    , 1000
+  if process.env.NODE_ENV isnt 'production'
+    linda.io.on 'connect', ->
+      cid = setInterval ->
+        return if typeof robot?.send isnt 'function'
+        robot.send {room: "news"}, "linda-socket.ioに接続しました #{config.url}"
+        clearInterval cid
+      , 1000
 
   linda.read_with_timeout = (space_name, tuple, msec, callback = ->) ->
     ts = linda.tuplespace(space_name)
