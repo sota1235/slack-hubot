@@ -27,6 +27,11 @@
 
 - [Scriptingガイド](https://github.com/github/hubot/blob/master/docs/scripting.md)
 
+
+debug npmを使っているので、環境変数DEBUGでデバッグメッセージが制御できます
+
+    % DEBUG=hubot* bin/hubot
+
 ### npmとして実装し、このhubotにインストールする
 
 `external-scripts.json`と`package.json`を編集し、プルリクください
@@ -58,7 +63,7 @@ Travis-CIでテスト通ったmasterブランチが自動的にHerokuにデプ�
 管理者にきいてコラボレーターに入れてもらってください。
 
 
-### masuilab-hubotとは別にHeroku建ててデプロイする方法
+## masuilab-hubotとは別にHeroku建ててデプロイする方法
 
     % heroku create
     % git push heroku master
@@ -67,4 +72,20 @@ Travis-CIでテスト通ったmasterブランチが自動的にHerokuにデプ�
     % heroku config:set NODE_ENV=production
     % heroku config:add TZ=Asia/Tokyo
     % heroku addons:add redistogo:nano
+    % heroku config:set 'DEBUG=*'
 
+### slack設定
+
+slackでhubotのインテグレーションを追加して、tokenをもらう
+
+    % heroku config:set HUBOT_SLACK_TOKEN=(取得したtoken)
+
+
+### githubotの設定
+
+認証してGitHub APIのtokenをもらう
+https://github.com/iangreenleaf/githubot#authentication
+
+
+    % heroku config:set HUBOT_GITHUB_TOKEN=(取得したtoken)
+    % heroku config:set HUBOT_GITHUB_ISSUE_REPO=masuilab/todo
