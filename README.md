@@ -11,9 +11,14 @@
 - Herokuで運用中
   - http://masuilab-hubot2.herokuapp.com
   - @TakumiBaba @shokai @nekobato が管理している
+  - コラボレータになりたい人はherokuアカウントを取ってメアド教えてください
 - Travis-CIでテスト
   - https://travis-ci.org/masuilab/slack-hubot
   - テスト通ったmasterブランチが自動的にHerokuにデプロイされる
+
+### ログを見る
+
+    % heroku logs --tail
 
 
 ## 開発する
