@@ -15,7 +15,6 @@ config =
   hubots : [
     'http://masuilab-hubot2.herokuapp.com'
     'http://babascript-hubot.herokuapp.com'
-    'http://nikezono-hubot.herokuapp.com'
   ]
 
 
