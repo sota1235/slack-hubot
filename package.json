@@ -35,7 +35,7 @@
     "hubot-12horoscopes": "0.0.10",
     "hubot-coveralls": "1.0.5",
     "hubot-gohan": "0.0.5",
-    "hubot-rss-reader": "git://github.com/shokai/hubot-rss-reader.git#21_slack_adapter_v3",
+    "hubot-rss-reader": "0.6.0",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-sfc-bus": "^0.1.4",
     "hubot-slack": "^3.2.1",
