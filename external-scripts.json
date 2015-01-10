@@ -1,4 +1,5 @@
 [
+  "hubot-brain-redis-hash",
   "hubot-sfc-bus",
   "hubot-weather-ja",
   "hubot-coveralls",
