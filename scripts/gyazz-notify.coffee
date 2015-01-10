@@ -43,8 +43,8 @@ module.exports = (robot) ->
 
   notify = (url, wiki, title, text, room) ->
     url = "#{url}/#{wiki}/#{title}".replace /[\s<>]/g, (c) -> encodeURI(c)
-    cache = robot.brain.get url
-    robot.brain.set url, text
+    cache = robot.brain.get "gyazz_#{url}"
+    robot.brain.set "gyazz_#{url}", text
 
     unless cache?.length > 0
       text = remove_gyazz_markup(text).trim()
