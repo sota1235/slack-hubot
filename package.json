@@ -36,7 +36,7 @@
     "hubot-brain-redis-hash": "^0.1.1",
     "hubot-coveralls": "1.0.5",
     "hubot-gohan": "0.0.5",
-    "hubot-rss-reader": "^0.6.3",
+    "hubot-rss-reader": "^0.6.4",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-sfc-bus": "^0.1.4",
     "hubot-slack": "^3.2.1",
