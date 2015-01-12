@@ -40,6 +40,7 @@
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-sfc-bus": "^0.1.4",
     "hubot-slack": "^3.2.1",
+    "hubot-tabelog": "0.0.4",
     "hubot-weather-ja": "0.0.1",
     "linda": "^1.2",
     "lodash": "^2.4.1",
