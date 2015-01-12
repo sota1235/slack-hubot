@@ -4,3 +4,4 @@
 node_modules
 *.rdb
 tmp
+.hubot_history
