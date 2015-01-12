@@ -64,6 +64,7 @@ config =
       'sudo rm /usr/bin/php'
       'その、拡張子でPHP使ってる事アピールするの何か意味あるんですか？'
       'PHP is evil'
+      'http://gyazo.com/c0e830968217f4c41ab6e0c7ded1a62c.png'
     ]
 
 module.exports = (robot) ->
