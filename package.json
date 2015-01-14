@@ -33,6 +33,7 @@
     "githubot": "^1.0.0-beta2",
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-12horoscopes": "0.0.10",
+    "hubot-anonymous-post": "0.0.1",
     "hubot-brain-redis-hash": "^0.1.1",
     "hubot-coveralls": "1.0.5",
     "hubot-gohan": "0.0.5",

@@ -6,5 +6,6 @@
   "hubot-gohan",
   "hubot-rss-reader",
   "hubot-12horoscopes",
-  "hubot-tabelog"
+  "hubot-tabelog",
+  "hubot-anonymous-post"
 ]
