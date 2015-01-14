@@ -23,7 +23,7 @@ config =
     ]
   かず:
     hear: [
-      /かず/i
+      /^かず$/i
     ]
     reply: [
       'かずすけ'
@@ -39,6 +39,7 @@ config =
     hear: [
       /ちくわ/i
       /竹輪/i
+      /筑摩/i
     ]
     reply: [
       'http://tiqav.com/1aM.jpg'
