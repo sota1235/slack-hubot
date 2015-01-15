@@ -1,6 +1,9 @@
 # Description:
 #   hubot-monitor-hubot
 #
+# Requirements:
+#   scripts/httpd.coffee
+#
 # Commands:
 #   hubot monitor
 #
@@ -15,6 +18,7 @@ config =
   hubots : [
     'http://masuilab-hubot2.herokuapp.com'
     'http://babascript-hubot.herokuapp.com'
+    'http://ahokai.herokuapp.com'
   ]
 
 
