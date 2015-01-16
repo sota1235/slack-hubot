@@ -15,4 +15,4 @@ module.exports = (robot) ->
     user = robot.adapter.client.getUserByID msg.user
     text = ":star: @#{user.name} added star #{msg.item.message.permalink}"
     debug text
-    robot.send {room: 'news'}, text
+    robot.send {room: 'stars'}, text
