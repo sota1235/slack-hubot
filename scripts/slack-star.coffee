@@ -13,6 +13,6 @@ module.exports = (robot) ->
     debug msg
     return unless msg.item.message.permalink
     user = robot.adapter.client.getUserByID msg.user
-    text = "@#{user.name} added star #{msg.item.message.permalink}"
+    text = ":star: @#{user.name} added star #{msg.item.message.permalink}"
     debug text
     robot.send {room: 'news'}, text
