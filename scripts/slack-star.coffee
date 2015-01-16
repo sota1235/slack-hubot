@@ -8,7 +8,7 @@ debug = require('debug')('hubot:slack-star')
 
 module.exports = (robot) ->
 
-  robot.adapter.client.on 'raw_message', (msg) ->
+  robot.adapter.client?.on? 'raw_message', (msg) ->
     return unless msg.type is 'star_added'
     debug msg
     return unless msg.item.message.permalink
