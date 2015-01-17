@@ -41,8 +41,8 @@ module.exports = (robot) ->
     , config.interval
 
 
-  notify = (url, wiki, title, text, room) ->
-    url = "#{url}/#{wiki}/#{title}".replace /[\s<>]/g, (c) -> encodeURI(c)
+  notify = (base_url, wiki, title, text, room) ->
+    url = "#{base_url}/#{wiki}/#{title}".replace /[\s<>]/g, (c) -> encodeURI(c)
     cache = robot.brain.get "gyazz_#{url}"
     robot.brain.set "gyazz_#{url}", text
 
@@ -54,12 +54,17 @@ module.exports = (robot) ->
       addeds = []
       for block in Diff.diffLines cache, text
         if block.added
-          addeds.push remove_gyazz_markup block.value.trim()
+          block = block.value.trim()
+          block = expand_uploadfile_fullpath block, "#{base_url}/upload"
+          block = remove_gyazz_markup block
+          addeds.push block
       if addeds.length < 1
         return
       debug notify_text = "#{config.header} 《更新》#{url} 《#{wiki}/#{title}》\n#{addeds.join('\n')}"
       robot.send {room: room}, notify_text
 
+expand_uploadfile_fullpath = (str, updir) ->
+  str.replace /\[\[([a-z0-9]{32}\.[^\s\]]+)/g, "[[#{updir}/$1"
 
 remove_gyazz_markup = (str, left='【', right='】') ->
   str.split(/(\[{2,3}[^\[\]]+\]{2,3}]|[\r\n]+)/).map (i) ->
