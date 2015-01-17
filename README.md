@@ -33,9 +33,16 @@
 - [Scriptingガイド](https://github.com/github/hubot/blob/master/docs/scripting.md)
 
 
+### ローカルで起動
+
 debug npmを使っているので、環境変数DEBUGでデバッグメッセージが制御できます
 
-    % DEBUG=hubot* bin/hubot
+    % DEBUG=hubot* bin/hubot  # shellで実行、slackには接続されない
+
+Slackの[API Token](https://masuilab.slack.com/services)とアダプタを指定して起動すると、ローカルのhubotをSlackに接続できる
+
+    % DEBUG=hubot* HUBOT_SLACK_TOKEN=a1b2cdef-jkl789 bin/hubot -a slack
+
 
 ### npmとして実装し、このhubotにインストールする
 
