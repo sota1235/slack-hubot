@@ -94,11 +94,9 @@ module.exports = (robot) ->
       if err or !work.details?
         debug "no workout data in event"
         return
-      txt = switch event.action
-        when 'creation'
-          "@#{event.screen_name} が運動しました (#{work.title} #{work.details?.km}km #{Math.floor work.details?.calories}カロリー)"
-        when 'updation'
-          "@#{event.screen_name} が運動しています (#{work.title} #{work.details?.km}km)"
+      if event.action isnt 'creation'
+        return
+      txt = "@#{event.screen_name} が運動しました (#{work.title} #{work.details?.km}km #{Math.floor work.details?.calories}カロリー)"
       if work.image?.length > 0
         shortUrl = "http://jawbone.com#{work.image}"
         urlExpander.expand shortUrl, (err, imgUrl) ->
