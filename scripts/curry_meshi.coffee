@@ -67,6 +67,15 @@ config =
       'PHP is evil'
       'http://gyazo.com/c0e830968217f4c41ab6e0c7ded1a62c.png'
     ]
+  質問:
+    hear: [
+      /わからない$/
+      /(教|おし)えて/
+    ]
+    reply: [
+      'ぐぐれカス〜'
+      'http://gyazo.com/205adeb36e6542c6db29f571452166fa.png'
+    ]
 
 module.exports = (robot) ->
 
