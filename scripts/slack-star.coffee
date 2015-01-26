@@ -33,12 +33,16 @@ module.exports = (robot) ->
     debug msg
     return unless url  = msg.item.message.permalink
     return unless user = robot.adapter.client.getUserByID msg.user
-    count = stars.get url
+    origin =
+      body: msg.item.message.text
+      user: robot.adapter.client.getUserByID msg.item.message.user
     switch msg.type
       when 'star_added'
         stars.add url, user.name
         users = stars.get url
         text = "#{[0...users.length].map(-> ":star:").join ''} #{url} by #{users.join ','}"
+        quoted_body = "#{origin.user.name}: #{origin.body}".split(/[\r\n]/).map((i) -> "> #{i}").join('\n')
+        text = "#{text}\n#{quoted_body}"
         debug text
         robot.send {room: config.room}, text
       when 'star_removed'
