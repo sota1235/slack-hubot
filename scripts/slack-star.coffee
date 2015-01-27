@@ -41,8 +41,9 @@ module.exports = (robot) ->
         stars.add url, user.name
         users = stars.get url
         text = "#{[0...users.length].map(-> ":star:").join ''} #{url} by #{users.join ','}"
-        quoted_body = "#{origin.user.name}: #{origin.body}".split(/[\r\n]/).map((i) -> "> #{i}").join('\n')
-        text = "#{text}\n#{quoted_body}"
+        if users.length > 1
+          quoted_body = "#{origin.user.name}: #{origin.body}".split(/[\r\n]/).map((i) -> "> #{i}").join('\n')
+          text = "#{text}\n#{quoted_body}"
         debug text
         robot.send {room: config.room}, text
       when 'star_removed'
