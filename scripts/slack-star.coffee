@@ -31,6 +31,7 @@ module.exports = (robot) ->
   robot.adapter.client?.on? 'raw_message', (msg) ->
     return if ['star_added', 'star_removed'].indexOf(msg.type) < 0
     debug msg
+    return if msg.item.type isnt 'message'
     return unless url  = msg.item.message.permalink
     return unless user = robot.adapter.client.getUserByID msg.user
     origin =
