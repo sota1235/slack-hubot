@@ -28,10 +28,15 @@ module.exports = (robot) ->
       users.splice(users.indexOf(user), 1)
       @set url, users
 
+  isChannelPrivate = (channel_id) ->
+    ## if private channel, getChannelByID returns "undefined"
+    return !robot.adapter.client.getChannelByID(channel_id)?
+
   robot.adapter.client?.on? 'raw_message', (msg) ->
     return if ['star_added', 'star_removed'].indexOf(msg.type) < 0
     debug msg
     return if msg.item.type isnt 'message'
+    return if isChannelPrivate msg.item.channel
     return unless url  = msg.item.message.permalink
     return unless user = robot.adapter.client.getUserByID msg.user
     origin =
