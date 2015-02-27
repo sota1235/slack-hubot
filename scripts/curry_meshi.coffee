@@ -21,6 +21,7 @@ config =
       'http://gyazo.com/fc6c4a6f74d41ee472948c35d7ab1d45.png'
       'https://www.youtube.com/watch?v=vhSBtoviSKw'
     ]
+    ratio: 0.3
   かず:
     hear: [
       /^かず$/i
@@ -76,6 +77,7 @@ config =
       'ぐぐれカス〜'
       'http://gyazo.com/205adeb36e6542c6db29f571452166fa.png'
     ]
+    ratio: 0.1
 
 module.exports = (robot) ->
 
@@ -84,6 +86,7 @@ module.exports = (robot) ->
     do (data) ->
       for regex in data.hear
         robot.hear regex, (msg) ->
+          return if (data.ratio or 1) < Math.random()
           who = msg.message.user.name
           text = _.sample data.reply
           msg.send "@#{who} #{text}"
