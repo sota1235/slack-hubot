@@ -1,16 +1,19 @@
 # Description:
 #   linda
 #
-# Commands:
-#   hubot [NAME] (起きて|寝て)る？
+# Dependencies:
+#   "debug": "*"
 #
-#   hubot [NAME] 睡眠時間
+# Commands:
 #
 # Author:
 #   @shokai
 
+debug = require('debug')('hubot:linda')
 
 config =
+  channel: '#news'
+  header: ':feelsgood:'
   url: "https://linda-server.herokuapp.com"
   space: "masuilab"  # main
   spaces :
@@ -47,3 +50,18 @@ module.exports = (robot) ->
 
   robot.respond /linda/i, (msg) ->
     msg.send "lindaの設定 #{JSON.stringify robot.linda.config}"
+
+  ts = linda.tuplespace config.space
+  ts.watch {type: "slack", cmd: "post"}, (err, tuple) ->
+    return if tuple.data.response?
+    return unless tuple.data.value?
+    debug tuple
+    unless channel = tuple.data.channel or config.channel
+      tuple.data.response = "fail"
+      ts.write tuple.data
+      return
+    msg = "#{config.header} <Linda/#{ts.name}> #{tuple.data.value}"
+
+    robot.send {room: channel}, msg
+    tuple.data.response = 'success'
+    ts.write tuple.data
