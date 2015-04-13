@@ -38,6 +38,7 @@
     "hubot-coveralls": "1.0.5",
     "hubot-gohan": "0.0.5",
     "hubot-heroku-keepalive": "0.0.4",
+    "hubot-linda": "0.0.2",
     "hubot-rss-reader": "^0.6.5",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-sfc-bus": "^0.1.4",
@@ -45,7 +46,6 @@
     "hubot-slack": "^3.3.0",
     "hubot-tabelog": "0.0.4",
     "hubot-weather-ja": "0.0.1",
-    "linda": "^1.2",
     "lodash": "^3.3.1",
     "request": "^2.36.0",
     "socket.io-client": "^1.3"
