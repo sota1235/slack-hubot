@@ -12,7 +12,7 @@
 config =
   channel: '#news'
   space: "masuilab"  # main
-  spaces :
+  places :
     delta : "デルタ"  # 名前と読み仮名
     iota  : "イオタ"
     tau   : "タウ"
