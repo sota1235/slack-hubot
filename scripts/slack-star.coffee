@@ -40,7 +40,7 @@ module.exports = (robot) ->
     return unless url  = msg.item.message.permalink
     return unless user = robot.adapter.client.getUserByID msg.user
     origin =
-      body: decodeURI(msg.item.message.text).replace(/<(https?:\/\/[^<>\|\s]+)(\|[^<>]+)?>/gmi, '$1')
+      body: msg.item.message.text.replace(/<(https?:\/\/[^<>\|\s]+)(\|[^<>]+)?>/gmi, '$1')
       user: robot.adapter.client.getUserByID msg.item.message.user
     switch msg.type
       when 'star_added'
