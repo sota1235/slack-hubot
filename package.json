@@ -39,7 +39,7 @@
     "hubot-gohan": "0.0.5",
     "hubot-heroku-keepalive": "0.0.4",
     "hubot-linda": "0.0.7",
-    "hubot-rss-reader": "^0.6.5",
+    "hubot-rss-reader": "^0.6.6",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-sfc-bus": "^0.1.4",
     "hubot-shubot": "^1.0.0",
