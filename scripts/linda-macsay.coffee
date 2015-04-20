@@ -2,7 +2,7 @@
 #   lindaからMacのsayコマンドを使う
 #
 # Commands:
-#   hubot [tuplespace] say おはよう
+#   hubot [where] say おはよう
 #
 #   hubot say ごきげんよう
 #
@@ -25,12 +25,11 @@ module.exports = (robot) ->
         where: where
       msg.send "#{where}に「#{str}」って言っといてやったわ、感謝しなさい"
 
+
     robot.respond /say ([^\s]+)/i, (msg) ->
       str = msg.match[1]
-      for where, nickname of robot.linda.config.places
-        robot.linda.tuplespace(robot.linda.config.space).write
-          type: "say"
-          value: str
-          where: where
-      to = _.keys(robot.linda.config.places).join("と")
-      msg.send "#{to}に「#{str}」って言っといてやったわ、感謝しなさい"
+      robot.linda.tuplespace(robot.linda.config.space).write
+        type: "say"
+        value: str
+
+      msg.send "「#{str}」って言っといてやったわ、感謝しなさい"
