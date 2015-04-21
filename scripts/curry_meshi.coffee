@@ -71,12 +71,14 @@ config =
   質問:
     hear: [
       /わからない$/
+      /わからん/
       /(教|おし)えて/
     ]
     reply: [
       'ぐぐれカス〜'
       'http://gyazo.com/205adeb36e6542c6db29f571452166fa.png'
       'まあ落ち着け http://games.kids.yahoo.co.jp/sports/013.html'
+      'コード書けばいいじゃん'
     ]
     ratio: 0.1
 
