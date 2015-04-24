@@ -16,7 +16,7 @@ module.exports = (robot) ->
 
   robot.on 'linda:ready', ->
 
-    robot.respond /([a-z_\-]+) say ([^\s]+)/i, (msg) ->
+    robot.respond /([a-z_\-]+) say (.+)$/i, (msg) ->
       where = msg.match[1]
       str = msg.match[2]
       robot.linda.tuplespace(robot.linda.config.space).write
@@ -26,7 +26,7 @@ module.exports = (robot) ->
       msg.send "#{where}に「#{str}」って言っといてやったわ、感謝しなさい"
 
 
-    robot.respond /say ([^\s]+)/i, (msg) ->
+    robot.respond /say (.+)$/i, (msg) ->
       str = msg.match[1]
       robot.linda.tuplespace(robot.linda.config.space).write
         type: "say"
