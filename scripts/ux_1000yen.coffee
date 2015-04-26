@@ -1,6 +1,9 @@
 # Description:
 #   UXと言われたら1000円と返す
 #
+# Commands:
+#   hubot 募金
+#
 # Author:
 #   @shokai
 #   @nikezono
@@ -17,8 +20,18 @@ module.exports = (robot) ->
 
   robot.respond /募金$/i, (msg) ->
     texts = ["UX募金 ただいまの募金額"]
+    counts = []
     for who, count of robot.brain.get('ux')
-      texts.push "@#{who} #{count*1000}円" if count > 0
+      count = count-0
+      continue if count < 1
+      counts.push
+        text: "@#{who} #{count*1000}円"
+        count: count
+    counts.sort (a,b) ->
+      a.count < b.count
+    .forEach (i) ->
+      texts.push i.text
+
     msg.send texts.join '\n'
 
   robot.hear /^(.*ux.*)$/i, (msg) ->
