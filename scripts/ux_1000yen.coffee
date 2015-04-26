@@ -21,7 +21,11 @@ module.exports = (robot) ->
       texts.push "@#{who} #{count*1000}円" if count > 0
     msg.send texts.join '\n'
 
-  robot.hear /ux/i, reply
+  robot.hear /^(.*ux.*)$/i, (msg) ->
+    text = msg.match[1]
+    unless /ux/i.test text.replace(/https?:\/\/[^\s]*ux[^\s]*/ig, '')
+      return
+    reply msg
 
   register_censor = (word) ->
     robot.hear new RegExp( word.split('').join('.*'), 'i' ), reply
