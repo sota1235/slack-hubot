@@ -8,6 +8,13 @@
 #   @shokai
 #   @nikezono
 
+## 除外する単語
+ignores = [
+  /https?:\/\/[^\s]*ux[^\s]*/ig
+  /flux/ig
+  /linux/ig
+]
+
 module.exports = (robot) ->
 
   reply = (msg) ->
@@ -36,8 +43,9 @@ module.exports = (robot) ->
 
   robot.hear /^(.*ux.*)$/i, (msg) ->
     text = msg.match[1]
-    unless /ux/i.test text.replace(/https?:\/\/[^\s]*ux[^\s]*/ig, '')
-      return
+    for reg in ignores
+      text = text.replace reg, '_'
+    return unless /ux/i.test text
     reply msg
 
   register_censor = (word) ->
