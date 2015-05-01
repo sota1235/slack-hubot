@@ -35,6 +35,7 @@ config =
       ':kazudon:'
       ':kazusuke:'
       'ガズ皇帝'
+      '何度言わせるのよ、このクズ！！'
     ]
   ちくわ:
     hear: [
