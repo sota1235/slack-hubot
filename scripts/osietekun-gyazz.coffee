@@ -1,6 +1,8 @@
-# 教えて君 の拡張
+# Description:
+#   教えて君 の拡張
 #
-# author: @shokai
+# Author:
+#   @shokai
 
 request = require 'request'
 
