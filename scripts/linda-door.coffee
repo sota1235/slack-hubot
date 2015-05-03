@@ -9,7 +9,7 @@
 
 module.exports = (robot) ->
 
-  robot.on 'linda:ready', ->
+  robot.on 'linda:ready', (linda) ->
 
     robot.respond /([a-z_\-]+) ドア(開けて|閉めて)/i, (msg) ->
       who = msg.message.user.name
@@ -18,7 +18,7 @@ module.exports = (robot) ->
         when "開けて" then "open"
         when "閉めて" then "close"
 
-      robot.linda.read_with_timeout robot.linda.config.space,
+      linda.read_with_timeout linda.config.space,
         type: "door"
         cmd: cmd
         who:who
@@ -31,7 +31,7 @@ module.exports = (robot) ->
           when "open" then "@#{who} 開けたと思う"
           when "close" then "@#{who} 閉めたと思う"
 
-      robot.linda.tuplespace(robot.linda.config.space).write
+      linda.tuplespace(linda.config.space).write
         type: "door"
         cmd: cmd
         who: who

@@ -14,12 +14,12 @@ _ = require 'lodash'
 
 module.exports = (robot) ->
 
-  robot.on 'linda:ready', ->
+  robot.on 'linda:ready', (linda) ->
 
     robot.respond /([a-z_\-]+) say (.+)$/i, (msg) ->
       where = msg.match[1]
       str = msg.match[2]
-      robot.linda.tuplespace(robot.linda.config.space).write
+      linda.tuplespace(where).write
         type: "say"
         value: str
         where: where
@@ -28,7 +28,7 @@ module.exports = (robot) ->
 
     robot.respond /say (.+)$/i, (msg) ->
       str = msg.match[1]
-      robot.linda.tuplespace(robot.linda.config.space).write
+      linda.tuplespace(linda.config.space).write
         type: "say"
         value: str
 

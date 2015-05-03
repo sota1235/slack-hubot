@@ -10,11 +10,11 @@
 
 module.exports = (robot) ->
 
-  robot.on 'linda:ready', ->
+  robot.on 'linda:ready', (linda) ->
 
     robot.respond /([a-z0-9_\-]+) わいわい/i, (msg) ->
       where = msg.match[1]
-      robot.linda.read_with_timeout 'masuilab',
+      linda.read_with_timeout 'masuilab',
         type:  "waiwai"
         where: where
       , 3000

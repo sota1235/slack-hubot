@@ -20,11 +20,11 @@ config =
 
 module.exports = (robot) ->
 
-  robot.on 'linda:ready', ->
-    robot.linda.config = config
+  robot.on 'linda:ready', (linda) ->
+    linda.config = config
 
-    robot.linda.read_with_timeout = (space_name, tuple, msec, callback = ->) ->
-      ts = robot.linda.tuplespace(space_name)
+    linda.read_with_timeout = (space_name, tuple, msec, callback = ->) ->
+      ts = linda.tuplespace(space_name)
       cid = ts.read tuple, (err, tuple) ->
         cid = null
         callback(err, tuple)
