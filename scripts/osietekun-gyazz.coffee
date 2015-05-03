@@ -11,7 +11,7 @@ get_gyazzpage = (pagename, callback = ->) ->
   request
     method: 'GET'
     url: encodeURI "#{url}/json"
-    auth:
+    auth: if process.env.GYAZZ_USER and process.env.GYAZZ_PASS
       user: process.env.GYAZZ_USER
       pass: process.env.GYAZZ_PASS
   , (err, res, body) ->
