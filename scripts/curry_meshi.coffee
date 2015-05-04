@@ -83,6 +83,13 @@ config =
       'コード書けばいいじゃん'
     ]
     ratio: 0.1
+  いくつ:
+    hear: [
+      /いくつ/
+      /何個/
+    ]
+    reply: [1...10].map (i) -> "#{i}個でじゅうぶんですよ"
+    ratio: 1
 
 module.exports = (robot) ->
 
