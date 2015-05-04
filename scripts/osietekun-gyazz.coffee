@@ -41,16 +41,16 @@ module.exports = (robot) ->
   robot.on 'osietekun:ready', (osietekun) ->
 
     osietekun.on 'response', (msg, res) ->
-      word = res.words[0]
-      get_gyazzpage word, (err, page) ->
-        if err
-          robot.logger.error "get gyazzpage #{word} error - #{JSON.stringify err}"
-          return
-        if page.data.length > 0
-          lines = ["#{page.url} に説明があります (#{page.data.length}行)"]
-          lines = lines.concat page.data.splice(0,3).map (line) -> remove_gyazz_markup line
-          lines.push '(略)' if page.data.length > 3
-          msg.send lines.join '\n'
+      for word in res.words
+        get_gyazzpage word, (err, page) ->
+          if err
+            robot.logger.error "get gyazzpage #{word} error - #{JSON.stringify err}"
+            return
+          if page.data.length > 0
+            lines = ["#{page.url} に説明があります (#{page.data.length}行)"]
+            lines = lines.concat page.data.splice(0,3).map (line) -> remove_gyazz_markup line
+            lines.push '(略)' if page.data.length > 3
+            msg.send lines.join '\n'
 
 
 ## for test
