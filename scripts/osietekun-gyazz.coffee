@@ -41,9 +41,10 @@ module.exports = (robot) ->
   robot.on 'osietekun:ready', (osietekun) ->
 
     osietekun.on 'response', (msg, res) ->
-      get_gyazzpage res.word, (err, page) ->
+      word = res.words[0]
+      get_gyazzpage word, (err, page) ->
         if err
-          robot.logger.error "get gyazzpage #{res.word} error - #{JSON.stringify err}"
+          robot.logger.error "get gyazzpage #{word} error - #{JSON.stringify err}"
           return
         if page.data.length > 0
           lines = ["#{page.url} に説明があります (#{page.data.length}行)"]
