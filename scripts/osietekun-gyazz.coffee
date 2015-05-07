@@ -53,7 +53,14 @@ module.exports = (robot) ->
             msg.send lines.join '\n'
 
     osietekun.on 'register:teacher', (msg, query) ->
-      msg.send "http://gyazz.masuilab.org/増井研/#{query.word} に書いてもいいんだよ"
+      get_gyazzpage query.word, (err, page) ->
+        if err
+          robot.logger.error "get gyazzpage #{query.word} error - #{JSON.stringify err}"
+        lines = ["http://gyazz.masuilab.org/増井研/#{query.word} に書いてもいいんだよ"]
+        if page.data.length > 0
+          lines = lines.concat page.data.splice(0,3).map (line) -> remove_gyazz_markup line
+          lines.push '(略)' if page.data.length > 3
+        msg.send lines.join '\n'
 
 
 ## for test
