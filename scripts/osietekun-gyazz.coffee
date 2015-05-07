@@ -52,6 +52,9 @@ module.exports = (robot) ->
             lines.push '(略)' if page.data.length > 3
             msg.send lines.join '\n'
 
+    osietekun.on 'register:teacher', (msg, query) ->
+      msg.send "http://gyazz.masuilab.org/増井研/#{query.word} に書いてもいいんだよ"
+
 
 ## for test
 if process.argv[1] is __filename
