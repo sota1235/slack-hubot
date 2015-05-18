@@ -88,8 +88,18 @@ config =
       /いくつ/
       /何個/
     ]
-    reply: [1...10].map (i) -> "#{i}個でじゅうぶんですよ"
+    reply: (msg) -> "#{Math.floor(Math.random()*10)+1}個でじゅうぶんですよ"
     ratio: 1
+  shuffle:
+    hear: [
+      /(.+)$/
+    ]
+    reply: (msg) ->
+      text = msg.match[0]
+      if text.length < 5
+        return
+       _.shuffle(text.split('')).join('')
+    ratio: 0.02
 
 module.exports = (robot) ->
 
@@ -100,5 +110,11 @@ module.exports = (robot) ->
         robot.hear regex, (msg) ->
           return if (data.ratio or 1) < Math.random()
           who = msg.message.user.name
-          text = _.sample data.reply
+          text = null
+          if typeof data.reply is 'function'
+            text = data.reply msg
+          if data.reply instanceof Array
+            text = _.sample data.reply
+
+          return unless text
           msg.send "@#{who} #{text}"
