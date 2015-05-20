@@ -69,6 +69,7 @@ config =
       'その、拡張子でPHP使ってる事アピールするの何か意味あるんですか？'
       'PHP is evil'
       'http://gyazo.com/c0e830968217f4c41ab6e0c7ded1a62c.png'
+      'http://gyazo.com/358c5cdb80388d51c0c8fac9a3fc08fe.png'
     ]
   質問:
     hear: [
