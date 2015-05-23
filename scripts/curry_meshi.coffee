@@ -70,6 +70,7 @@ config =
       'PHP is evil'
       'http://gyazo.com/c0e830968217f4c41ab6e0c7ded1a62c.png'
       'http://gyazo.com/358c5cdb80388d51c0c8fac9a3fc08fe.png'
+      'https://38.media.tumblr.com/tumblr_lul2zbQ3w41qz5devo1_400.gif'
     ]
   質問:
     hear: [
