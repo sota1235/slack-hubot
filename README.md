@@ -1,6 +1,6 @@
 # 増井研Hubot
 
-[![Build Status](https://travis-ci.org/masuilab/slack-hubot.svg?branch=master)](https://travis-ci.org/masuilab/slack-hubot)
+[![Circle CI](https://circleci.com/gh/masuilab/slack-hubot.svg?style=svg)](https://circleci.com/gh/masuilab/slack-hubot)
 
 
 ### ソースコード
