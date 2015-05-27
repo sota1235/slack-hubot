@@ -23,7 +23,7 @@ module.exports = (robot) ->
       return res.status(400).end 'bad request'
 
     res.end 'ok'
-    header = if status is 'success' then ':ok_hand:' else ':no_good:'
+    header = if status is 'failed' then ':no_good:' else ':ok_hand:'
     text =
       [
         "#{header} [#{status.toUpperCase()}] #{subject}"
