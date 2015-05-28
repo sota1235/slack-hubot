@@ -37,7 +37,7 @@
     "hubot-brain-redis-hash": "^0.1.1",
     "hubot-coveralls": "1.0.5",
     "hubot-diagnostics": "0.0.1",
-    "hubot-gohan": "0.0.5",
+    "hubot-gohan": "0.0.6",
     "hubot-google-images": "^0.1.4",
     "hubot-google-translate": "^0.1.0",
     "hubot-help": "^0.1.1",
