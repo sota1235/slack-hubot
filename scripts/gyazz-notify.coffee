@@ -47,6 +47,7 @@ module.exports = (robot) ->
     robot.brain.set "gyazz_#{url}", text
 
     unless cache?.length > 0
+      text = expand_uploadfile_fullpath text, "#{base_url}/upload"
       text = remove_gyazz_markup(text).trim()
       debug notify_text = "#{config.header} 《新規》#{url} 《#{wiki}/#{title}》\n#{text}"
       robot.send {room: room}, notify_text
