@@ -1,18 +1,15 @@
 {
   "name": "masuilab-slack-hubot",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "test": "grunt test"
   },
-  "author": "Takumi Baba",
+  "author": "Sho Hashimoto <hashimoto@shokai.org>",
   "keywords": [
-    "github",
-    "hubot",
-    "campfire",
-    "bot"
+    "hubot"
   ],
-  "description": "slack-hubot scirpts for tean masuilab",
+  "description": "slack-hubot for masuilab",
   "licenses": [
     {
       "type": "MIT",
@@ -80,5 +77,10 @@
         "room": "#news"
       }
     }
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/masuilab/slack-hubot/issues"
+  },
+  "homepage": "https://github.com/masuilab/slack-hubot",
+  "license": "MIT"
 }
