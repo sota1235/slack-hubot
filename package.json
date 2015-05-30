@@ -34,7 +34,6 @@
     "hubot": "^2.12.0",
     "hubot-12horoscopes": "0.0.11",
     "hubot-anonymous-post": "0.0.3",
-    "hubot-brain-redis-hash": "^0.1.1",
     "hubot-coveralls": "1.0.5",
     "hubot-diagnostics": "0.0.1",
     "hubot-gohan": "0.0.6",
@@ -47,7 +46,6 @@
     "hubot-pugme": "^0.1.0",
     "hubot-rss-reader": "^0.6.7",
     "hubot-rules": "^0.1.0",
-    "hubot-scripts": "^2.5.16",
     "hubot-sfc-bus": "^0.1.4",
     "hubot-shipit": "^0.2.0",
     "hubot-shubot": "^1.0.0",
@@ -55,6 +53,7 @@
     "hubot-tabelog": "0.0.4",
     "hubot-youtube": "^0.1.2",
     "lodash": "^3.3.1",
+    "mongodb": "^2.0.33",
     "request": "^2.36.0",
     "socket.io-client": "^1.3"
   },
