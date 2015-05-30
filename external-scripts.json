@@ -1,4 +1,5 @@
 [
+  "hubot-mongodb-brain",
   "hubot-linda",
   "hubot-sfc-bus",
   "hubot-coveralls",

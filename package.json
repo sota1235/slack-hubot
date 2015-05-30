@@ -40,6 +40,7 @@
     "hubot-heroku-keepalive": "0.0.4",
     "hubot-linda": "0.1.0",
     "hubot-maps": "0.0.2",
+    "hubot-mongodb-brain": "git://github.com/shokai/hubot-mongodb-brain.git",
     "hubot-pugme": "^0.1.0",
     "hubot-rss-reader": "^0.6.7",
     "hubot-rules": "^0.1.0",
@@ -50,7 +51,6 @@
     "hubot-tabelog": "0.0.4",
     "hubot-youtube": "^0.1.2",
     "lodash": "^3.3.1",
-    "mongodb": "^2.0.33",
     "request": "^2.36.0",
     "socket.io-client": "^1.3"
   },
