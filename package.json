@@ -50,6 +50,7 @@
     "hubot-shubot": "^1.0.0",
     "hubot-slack": "^3.3.0",
     "hubot-tabelog": "0.0.4",
+    "hubot-tiqav": "0.0.2",
     "hubot-youtube": "^0.1.2",
     "lodash": "^3.3.1",
     "request": "^2.36.0",
