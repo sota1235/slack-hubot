@@ -102,6 +102,14 @@ config =
       if text.length > 3 and text.length < 10
         _.shuffle(text.split('')).join('')
     ratio: 0.02
+  gist:
+    hear: [
+      /gist.github/
+    ]
+    reply: [
+      'ずいぶんとダサいコードを書いているのね'
+    ]
+    ratio: 0.2
 
 module.exports = (robot) ->
 
