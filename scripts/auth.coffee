@@ -54,6 +54,8 @@ module.exports = (robot) ->
           users.push(user)
       users
 
+
+
   robot.auth = new Auth
 
   robot.respond /@?(.+) (has) (["'\w: -_]+) (role)/i, (msg) ->
