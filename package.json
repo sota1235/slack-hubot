@@ -70,8 +70,8 @@
     "supertest": "*"
   },
   "engines": {
-    "node": "0.12.x",
-    "npm": "2.7.x"
+    "node": "4.2.x",
+    "npm": "3.x"
   },
   "config": {
     "coveralls": {
