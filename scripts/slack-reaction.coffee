@@ -42,7 +42,12 @@ module.exports = (robot) ->
         reactions.add url, user.name
         users = reactions.get url
         text = [0...users.length].map(-> ":#{msg.reaction}:").join ''
-        text += " #{url} by #{users.join ','}"
+        _users =
+          if users.length is 1
+            user.name
+          else
+            "#{user.name} and #{users.filter((i) -> i isnt user.name).join ', '}"
+        text += " #{url} by #{_users}"
         debug text
         robot.send {room: config.room}, text
       when 'reaction_removed'
