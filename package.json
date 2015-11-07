@@ -46,7 +46,7 @@
     "hubot-rules": "^0.1.0",
     "hubot-sfc-bus": "^0.1.4",
     "hubot-shipit": "^0.2.0",
-    "hubot-shubot": "shokai/hubot-shubot#script_doc",
+    "hubot-shubot": "^1.0.0",
     "hubot-slack": "^3.4.1",
     "hubot-tabelog": "0.0.4",
     "hubot-tiqav": "0.0.2",
