@@ -23,6 +23,7 @@ icons =
   増井: 'masui'
   nekobato: 'nekobato'
   napo: 'napo'
+  satake: 'satake'
 
 timeout_cids = {}
 
