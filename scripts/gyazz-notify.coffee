@@ -11,11 +11,18 @@
 
 Diff = require 'diff'
 debug = require('debug')('hubot:gyazz-notify')
+require 'string.prototype.repeat'
 
 config =
   room: "news"
   header: ":star:"
   interval: 60000
+
+icons =
+  shokai: 'shokai'
+  増井: 'masui'
+  nekobato: 'nekobato'
+  napo: 'napo'
 
 timeout_cids = {}
 
@@ -57,6 +64,7 @@ module.exports = (robot) ->
         if block.added
           block = block.value.trim()
           block = expand_uploadfile_fullpath block, "#{base_url}/upload"
+          block = replace_gyazz_icon block
           block = remove_gyazz_markup block
           addeds.push block
       if addeds.length < 1
@@ -66,6 +74,14 @@ module.exports = (robot) ->
 
 expand_uploadfile_fullpath = (str, updir) ->
   str.replace /\[\[([a-z0-9]{32}\.[^\s\]]+)/g, "[[#{updir}/$1"
+
+replace_gyazz_icon = (str) ->
+  for gyazz, slack of icons
+    str = str.replace(new RegExp("\\[\\[#{gyazz}\\.icon\\]\\]", "g"), " :#{slack}: ")
+    reg = new RegExp "\\[\\[#{gyazz}\\.icon[\\*x]([1-9][0-9]*)(|\\.[0-9]+)\\]\\]", "g"
+    str = str.replace reg, (src, p1, p2) ->
+      ' ' + ":#{slack}:".repeat(p1-0) + ' '
+  return str
 
 remove_gyazz_markup = (str, left='【', right='】') ->
   str.split(/(\[{2,3}[^\[\]]+\]{2,3}]|[\r\n]+)/).map (i) ->
