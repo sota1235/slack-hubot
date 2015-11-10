@@ -24,6 +24,7 @@ icons =
   nekobato: 'nekobato'
   napo: 'napo'
   satake: 'satake'
+  geta6: 'geta6'
 
 timeout_cids = {}
 
