@@ -27,6 +27,7 @@ icons =  # key=gyazz, value=slack icon
   geta6: 'geta6'
   nikezono: 'eyeglasses'
   keroxp: 'keroxp'
+  ytanaka: 'ytanaka'
 
 timeout_cids = {}
 
