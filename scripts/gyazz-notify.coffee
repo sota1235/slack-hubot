@@ -18,7 +18,7 @@ config =
   header: ":star:"
   interval: 60000
 
-icons =
+icons =  # key=gyazz, value=slack icon
   shokai: 'shokai'
   増井: 'masui'
   nekobato: 'nekobato'
@@ -26,6 +26,7 @@ icons =
   satake: 'satake'
   geta6: 'geta6'
   nikezono: 'eyeglasses'
+  keroxp: 'keroxp'
 
 timeout_cids = {}
 
