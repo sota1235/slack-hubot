@@ -33,7 +33,6 @@ module.exports = (robot) ->
        msg.type isnt 'reaction_removed'
       return
     debug msg
-    return if msg.item.type isnt 'message'
     return unless channel = robot.adapter.client.getChannelByID msg.item.channel
     return unless user = robot.adapter.client.getUserByID msg.user
     url = "https://#{robot.adapter.client.team.domain}.slack.com/archives/#{channel.name}/p#{msg.item.ts.replace('.','')}"
