@@ -14,9 +14,9 @@
 
 Diff = require 'diff'
 debug = require('debug')('hubot:gyazz-notify')
-request = require 'request'
-FeedParser = require 'feedparser'
+async = require 'async'
 require 'string.prototype.repeat'
+Gyazz = require '../libs/gyazz'
 
 config =
   room: "news"
@@ -42,27 +42,24 @@ module.exports = (robot) ->
   cid = setInterval ->
     return if typeof robot?.send isnt 'function'
     clearInterval cid
+    check_gyazz()
+  , 1000
+
+  check_gyazz = ->
     url = 'http://gyazz.masuilab.org'
     wiki = '増井研'
-    gyazz = new Gyazz url
-    max_pages = 30
-    count = 0
-    gyazz.get_page_list wiki, (err, title) ->
+    gyazz = new Gyazz url, {user: process.env.GYAZZ_USER, pass: process.env.GYAZZ_PASS}
+    gyazz.get_pages wiki, (err, titles) ->
       if err
         return debug err
-      count += 1
-      if count > max_pages
-        return
-      do (count) ->
-        setTimeout ->
-          debug "checking(#{count}) #{title}"
-          gyazz.get_page wiki, title, (err, page) ->
-            if err
-              return debug err
-            text = page.data.join '\n'
-            notify url, wiki, title, text, config.room
-        , count * 5000
-  , 1000
+      async.eachSeries titles[0...30], (title, next) ->
+        debug "checking #{title}"
+        gyazz.get_page wiki, title, (err, page) ->
+          if err
+            return debug err
+          text = page.data.join '\n'
+          notify url, wiki, title, text, config.room
+          setTimeout next, 5000
 
 
   robot.router.post '/hubot/gyazz-webhook', (req, res) ->
@@ -130,55 +127,3 @@ remove_gyazz_markup = (str, left='【', right='】') ->
         return i.replace(/\[{2,3}/g, left).replace(/\]{2,3}/g, right)
     return i
   .join ''
-
-
-Gyazz = class Gyazz
-
-  constructor: (@url) ->
-
-  get_page_list: (wiki_name, callback = ->) ->
-    feedparser = new FeedParser
-    req = request
-      method: 'GET'
-      uri: encodeURI "#{@url}/#{wiki_name}/rss.xml"
-      timeout: 10000
-      headers:
-        'User-Agent': 'hubot'
-      auth: if process.env.GYAZZ_PASS and process.env.GYAZZ_USER
-        user: process.env.GYAZZ_USER
-        pass: process.env.GYAZZ_PASS
-
-    req.on 'error', (err) ->
-      callback err
-
-    req.on 'response', (res) ->
-      if res.statusCode isnt 200
-        return callback "statusCode: #{res.statusCode}"
-      this.pipe feedparser
-
-    feedparser.on 'error', (err) ->
-      callback err
-
-    feedparser.on 'data', (chunk) ->
-      callback null, chunk.title
-
-  get_page: (wiki_name, page_name, callback = ->) ->
-    request
-      method: 'GET'
-      uri: encodeURI "#{@url}/#{wiki_name}/#{page_name}/json"
-      timeout: 10000
-      headers:
-        'User-Agent': 'hubot'
-      auth: if process.env.GYAZZ_PASS and process.env.GYAZZ_USER
-        user: process.env.GYAZZ_USER
-        pass: process.env.GYAZZ_PASS
-    , (err, res, body) ->
-      if err
-        return debug err
-      if res.statusCode isnt 200
-        return debug "statusCode: #{res.statusCode}"
-      try
-        page = JSON.parse body
-      catch
-        return callback "json parse error"
-      callback null, page
