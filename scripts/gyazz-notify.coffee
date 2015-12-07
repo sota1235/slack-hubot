@@ -30,7 +30,7 @@ icons =  # key=gyazz, value=slack icon
   napo: 'napo'
   satake: 'satake'
   geta6: 'geta6'
-  nikezono: 'eyeglasses'
+  nikezono: 'nikezono'
   keroxp: 'keroxp'
   ytanaka: 'ytanaka'
 
