@@ -26,6 +26,7 @@ config =
 icons =  # key=gyazz, value=slack icon
   shokai: 'shokai'
   増井: 'masui'
+  masui: 'masui'
   nekobato: 'nekobato'
   napo: 'napo'
   satake: 'satake'
