@@ -125,6 +125,8 @@ module.exports = (robot) ->
             text = data.reply msg
           if data.reply instanceof Array
             text = _.sample data.reply
+            if typeof text is 'function'
+              text = text msg
 
           return unless text
           msg.send "@#{who} #{text}"
