@@ -110,6 +110,29 @@ config =
       'ずいぶんとダサいコードを書いているのね'
     ]
     ratio: 0.2
+  かずすけ:
+    hear: [
+      /忘年会/
+      /飲み会/
+      /呑み会/
+      /肉/
+    ]
+    reply: [
+      'かず'
+      'かずすけ？'
+      'すけかず'
+      'かずのすけ'
+      '金のホルモン'
+      'マルチョウ'
+      (msg) -> "かずすけ「#{msg.match[0]}」"
+      'はい、湘南台かずすけです'
+      'http://blog.naotaco.com/archives/197'
+      'http://tabelog.com/kanagawa/A1404/A140405/14018634/'
+      'https://www.flickr.com/photos/shokai/8178681503/'
+      'https://www.flickr.com/photos/shokai/7575397070/'
+      'https://www.flickr.com/photos/shokai/5148760554/'
+    ]
+    ratio: 0.6
 
 module.exports = (robot) ->
 
