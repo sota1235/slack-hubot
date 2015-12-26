@@ -101,7 +101,7 @@ config =
       text = msg.match[0]
       if text.length > 3 and text.length < 10
         _.shuffle(text.split('')).join('')
-    ratio: 0.02
+    ratio: 0.005
   gist:
     hear: [
       /gist.github/
