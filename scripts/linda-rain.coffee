@@ -24,9 +24,13 @@ module.exports = (robot) ->
           return msg.send "@#{who} #{where}は知らない"
 
         if tuple.data.observation > 0
-          msg.send "@#{who} 降ってる (#{tuple.data.observation})"
-        else if tuple.data.forecast > 0
-          msg.send "@#{who} 降ってないけど、もうすぐ降りそう (#{tuple.data.forecast})"
+          if tuple.data.forecast > 0
+            msg.send "@#{who} 降ってる (#{tuple.data.observation})"
+          else
+            msg.send "@#{who} 降ってる (#{tuple.data.observation}) でももうすぐ止みそう"
         else
-          msg.send "@#{who} 降ってない"
+          if tuple.data.forecast > 0
+            msg.send "@#{who} 降ってないけど、もうすぐ降りそう (#{tuple.data.forecast})"
+          else
+            msg.send "@#{who} 降ってない"
 
