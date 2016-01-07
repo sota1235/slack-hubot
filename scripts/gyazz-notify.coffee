@@ -39,12 +39,9 @@ timeout_cids = {}
 
 module.exports = (robot) ->
 
-  ## wait for slack connection
-  cid = setInterval ->
-    return if typeof robot?.send isnt 'function'
-    clearInterval cid
+  ## wait for mongodb connection
+  robot.brain.once 'loaded', ->
     check_gyazz()
-  , 1000
 
   check_gyazz = ->
     url = 'http://gyazz.masuilab.org'
