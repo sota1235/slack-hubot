@@ -45,7 +45,7 @@
     "hubot-mongodb-brain": "0.1.0",
     "hubot-nomulish": "github:shokai/hubot-nomulish",
     "hubot-pugme": "^0.1.0",
-    "hubot-rss-reader": "^0.8.0",
+    "hubot-rss-reader": "^0.8.2",
     "hubot-rules": "^0.1.0",
     "hubot-sfc-bus": "^0.1.4",
     "hubot-shipit": "^0.2.0",
