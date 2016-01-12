@@ -84,6 +84,7 @@ config =
       'まあ落ち着け http://games.kids.yahoo.co.jp/sports/013.html'
       'コード書けばいいじゃん'
       'hubot 教えて [単語] で調べれるよ'
+      'https://gyazo.com/cf539d217b04a907c0a2ebe700479f2a.png'
     ]
     ratio: 0.1
   いくつ:
