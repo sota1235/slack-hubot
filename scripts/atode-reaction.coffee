@@ -13,6 +13,7 @@ config =
     'readitlater'
     'atodeyomu'
     'kinenpapiko'
+    'atodemiru'
   ]
 
 module.exports = (robot) ->
