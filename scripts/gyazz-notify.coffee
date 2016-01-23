@@ -45,21 +45,21 @@ module.exports = (robot) ->
 
   check_gyazz = ->
     url = 'http://gyazz.masuilab.org'
-    wiki = '増井研'
-    gyazz = new Gyazz url, {user: process.env.GYAZZ_USER, pass: process.env.GYAZZ_PASS}
-    gyazz.get_pages wiki
-    .then (titles) ->
-      async.eachSeries titles[0...30], (title, next) ->
-        debug "checking #{title}"
-        gyazz.get_page wiki, title
-        .then (page) ->
-          text = page.data.join '\n'
-          notify url, wiki, title, text, config.room
-          setTimeout next, 5000
-        .catch (err) ->
-          debug err
-    .catch (err) ->
-      debug err
+    ['増井研', '推薦'].forEach (wiki) ->
+      gyazz = new Gyazz url, {user: process.env.GYAZZ_USER, pass: process.env.GYAZZ_PASS}
+      gyazz.get_pages wiki
+      .then (titles) ->
+        async.eachSeries titles[0...30], (title, next) ->
+          debug "checking #{wiki}/#{title}"
+          gyazz.get_page wiki, title
+          .then (page) ->
+            text = page.data.join '\n'
+            notify url, wiki, title, text, config.room
+            setTimeout next, 5000
+          .catch (err) ->
+            debug err
+      .catch (err) ->
+        debug err
 
 
   robot.router.post '/hubot/gyazz-webhook', (req, res) ->
