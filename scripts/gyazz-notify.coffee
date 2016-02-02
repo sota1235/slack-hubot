@@ -12,10 +12,10 @@
 # Author:
 #   @shokai
 
+co    = require 'co'
+Promise = require 'bluebird'
 Diff = require 'diff'
 debug = require('debug')('hubot:gyazz-notify')
-async = require 'async'
-require 'string.prototype.repeat'
 Gyazz = require '../libs/gyazz'
 
 config =
@@ -41,25 +41,25 @@ module.exports = (robot) ->
 
   ## wait for mongodb connection
   robot.brain.once 'loaded', ->
+    debug "start checking gyazz"
     check_gyazz()
+      .then ->
+        debug "done: checking gyazz"
+      .catch (err) ->
+        console.error err.stack or err
 
   check_gyazz = ->
     url = 'http://gyazz.masuilab.org'
-    ['増井研', '推薦'].forEach (wiki) ->
-      gyazz = new Gyazz url, {user: process.env.GYAZZ_USER, pass: process.env.GYAZZ_PASS}
-      gyazz.get_pages wiki
-      .then (titles) ->
-        async.eachSeries titles[0...30], (title, next) ->
+    return co ->
+      for wiki in ['増井研', '推薦']
+        gyazz = new Gyazz url, {user: process.env.GYAZZ_USER, pass: process.env.GYAZZ_PASS}
+        titles = yield gyazz.get_pages wiki
+        for title in titles[0...5]
           debug "checking #{wiki}/#{title}"
-          gyazz.get_page wiki, title
-          .then (page) ->
-            text = page.data.join '\n'
-            notify url, wiki, title, text, config.room
-            setTimeout next, 5000
-          .catch (err) ->
-            debug err
-      .catch (err) ->
-        debug err
+          page = yield gyazz.get_page wiki, title
+          text = page.data.join '\n'
+          notify url, wiki, title, text, config.room
+          yield Promise.delay 5000
 
 
   robot.router.post '/hubot/gyazz-webhook', (req, res) ->
