@@ -147,7 +147,7 @@ config =
       'https://gyazo.com/ec5a00201b3ee41de58bb0fe8f827090.png'
       ':kotakemukaihara:'
       (msg) ->
-        [0...4]
+        [0..Math.random()*5]
           .map ->
             _.sample [":ko:", ":take:", ":mukai:", ":hara:"]
           .join ' '
