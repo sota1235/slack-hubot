@@ -86,6 +86,7 @@ config =
       'hubot 教えて [単語] で調べれるよ'
       'https://gyazo.com/cf539d217b04a907c0a2ebe700479f2a.png'
       'https://gyazo.com/4782005540d5f7f1f08d7b5a2650d0a7.png'
+      'https://gyazo.com/d199cacc0fb79909087cd2224957bbde.png'
     ]
     ratio: 0.1
   いくつ:
