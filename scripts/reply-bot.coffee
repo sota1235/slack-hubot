@@ -146,6 +146,11 @@ config =
       'https://gyazo.com/575ea914c736ee510b90f831775d131d.png'
       'https://gyazo.com/ec5a00201b3ee41de58bb0fe8f827090.png'
       ':kotakemukaihara:'
+      (msg) ->
+        [0...4]
+          .map ->
+            _.sample [":ko:", ":take:", ":mukai:", ":hara:"]
+          .join ' '
     ]
     ratio: 0.8
 
