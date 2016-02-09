@@ -136,6 +136,18 @@ config =
       'https://www.flickr.com/photos/shokai/5148760554/'
     ]
     ratio: 0.6
+  小竹向原:
+    hear: [
+      /小竹向原/
+      /kotakemukaihara/
+      /佐竹/
+    ]
+    reply: [
+      'https://gyazo.com/575ea914c736ee510b90f831775d131d.png'
+      'https://gyazo.com/ec5a00201b3ee41de58bb0fe8f827090.png'
+      ':kotakemukaihara:'
+    ]
+    ratio: 0.8
 
 module.exports = (robot) ->
 
