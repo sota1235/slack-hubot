@@ -72,6 +72,21 @@ config =
       'http://gyazo.com/358c5cdb80388d51c0c8fac9a3fc08fe.png'
       'https://38.media.tumblr.com/tumblr_lul2zbQ3w41qz5devo1_400.gif'
     ]
+  わかる:
+    hear: [
+      /^わかる$/
+      /^納得$/
+      /^わかった$/
+      /^わかりました$/
+      /^合点$/
+    ]
+    reply: [
+      "https://gyazo.com/cf539d217b04a907c0a2ebe700479f2a.png"
+      "https://gyazo.com/4782005540d5f7f1f08d7b5a2650d0a7.png"
+      "https://gyazo.com/d199cacc0fb79909087cd2224957bbde.png"
+      "https://gyazo.com/e3b8c028df43cfaf5c8bff15f2c2bec0.png"
+    ]
+    ratio: 0.4
   質問:
     hear: [
       /わからない$/
@@ -84,9 +99,10 @@ config =
       'まあ落ち着け http://games.kids.yahoo.co.jp/sports/013.html'
       'コード書けばいいじゃん'
       'hubot 教えて [単語] で調べれるよ'
-      'https://gyazo.com/cf539d217b04a907c0a2ebe700479f2a.png'
-      'https://gyazo.com/4782005540d5f7f1f08d7b5a2650d0a7.png'
-      'https://gyazo.com/d199cacc0fb79909087cd2224957bbde.png'
+      "https://gyazo.com/cf539d217b04a907c0a2ebe700479f2a.png"
+      "https://gyazo.com/4782005540d5f7f1f08d7b5a2650d0a7.png"
+      "https://gyazo.com/d199cacc0fb79909087cd2224957bbde.png"
+      "https://gyazo.com/e3b8c028df43cfaf5c8bff15f2c2bec0.png"
     ]
     ratio: 0.1
   いくつ:
