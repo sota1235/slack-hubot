@@ -74,11 +74,11 @@ config =
     ]
   わかる:
     hear: [
-      /^わかる$/
-      /^納得$/
-      /^わかった$/
-      /^わかりました$/
-      /^合点$/
+      /^わかる$/i
+      /^納得$/i
+      /^わかった$/i
+      /^わかりました$/i
+      /^合点$/i
     ]
     reply: [
       "https://gyazo.com/cf539d217b04a907c0a2ebe700479f2a.png"
@@ -89,7 +89,7 @@ config =
     ratio: 0.4
   質問:
     hear: [
-      /わからない$/
+      /わからない$/i
       /わからん/
       /(教|おし)えて/
     ]
@@ -114,7 +114,7 @@ config =
     ratio: 1
   shuffle:
     hear: [
-      /(.+)$/
+      /(.+)$/i
     ]
     reply: (msg) ->
       text = msg.match[0]
