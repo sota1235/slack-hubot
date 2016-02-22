@@ -33,4 +33,4 @@ module.exports = (robot) ->
             msg.send "@#{who} 降ってないけど、もうすぐ降りそう (#{tuple.data.forecast})"
           else
             msg.send "@#{who} 降ってない"
-        msg.send tuple.data.map
+        msg.send tuple.data.map+"&time="+Date.now()
