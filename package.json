@@ -73,7 +73,7 @@
     "supertest": "*"
   },
   "engines": {
-    "node": "5.2.x",
+    "node": "5.x",
     "npm": "3.x"
   },
   "config": {
