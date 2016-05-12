@@ -85,6 +85,7 @@ config =
       "https://gyazo.com/4782005540d5f7f1f08d7b5a2650d0a7.png"
       "https://gyazo.com/d199cacc0fb79909087cd2224957bbde.png"
       "https://gyazo.com/e3b8c028df43cfaf5c8bff15f2c2bec0.png"
+      "https://gyazo.com/46ad24d46904a21cda6e644d23300ec2.png"
     ]
     ratio: 0.4
   質問:
