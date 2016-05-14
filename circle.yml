@@ -1,11 +1,6 @@
 machine:
   node:
     version: 5.7
-deployment:
-  staging:
-    branch: master
-    heroku:
-      appname: masuilab-hubot2
 notify:
   webhooks:
     - url: https://masuilab-hubot2.herokuapp.com/circleci-webhook?room=slack-hubot
