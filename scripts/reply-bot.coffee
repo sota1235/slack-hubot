@@ -9,7 +9,7 @@ _ = require 'lodash'
 config =
   gyazz:
     hear: [ /\[{2}([^\[\]]+)\]{2}/ ]
-    reply: (msg) -> "http://gyazz.masuilab.org/増井研/#{msg.match[1]}"
+    reply: (msg) -> "http://gyazz.masuilab.org/増井研/#{msg.match[1].replace(" ", "%20")}"
   カレーメシ:
     hear: [
       /カレー/i
