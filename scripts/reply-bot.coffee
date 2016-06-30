@@ -9,7 +9,10 @@ _ = require 'lodash'
 config =
   gyazz:
     hear: [ /\[{2}([^\[\]]+)\]{2}/ ]
-    reply: (msg) -> "http://gyazz.masuilab.org/増井研/#{msg.match[1].replace(" ", "%20")}"
+    reply: (msg) ->
+      name = msg.match[1].replace(" ", "%20")
+      [title, wiki] = name.split('::').reverse()
+      "http://gyazz.masuilab.org/#{wiki||'増井研'}/#{title}"
   カレーメシ:
     hear: [
       /カレー/i
