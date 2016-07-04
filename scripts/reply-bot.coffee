@@ -182,8 +182,12 @@ config =
   時刻変換:
     hear: [ /(\d+)時/ ]
     reply: (msg) ->
+      who = msg.message.user.name
       hour = msg.match[1]
-      "日本時間#{hour}時は イギリス時間#{(hour-8+24)%24}時です"
+      if who is 'masui'
+        return "イギリス時間#{hour}時は 日本時間#{(hour+8+24)%24}時です"
+      else
+        return "日本時間#{hour}時は イギリス時間#{(hour-8+24)%24}時です"
   わかるらんど:
     hear: [
       /わからん/
