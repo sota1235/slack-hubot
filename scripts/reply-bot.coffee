@@ -184,6 +184,13 @@ config =
     reply: (msg) ->
       hour = msg.match[1]
       "日本時間#{hour}時は イギリス時間#{(hour-8+24)%24}時です"
+  わかるらんど:
+    hear: [
+      /わからん/
+    ]
+    reply: [
+      "ここは、心のリアクションがわかる世界\nhttps://wakaruland.com/?@masui,@napo0703,@dorayaki0,@sasa_sfc,@ryokkkke,@hkrit0,@kir1ca,@ami_nosan,@youngsnow_sfc,@64benzie"
+    ]
 
 module.exports = (robot) ->
 
