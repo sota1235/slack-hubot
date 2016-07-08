@@ -8,7 +8,6 @@ config =
   room: "news"
   header: ":sake:"
 
-
 module.exports = (robot) ->
   robot.router.post '/gyazz-update', (req, res) ->
     {text, attachments, mrkdwn, username} = req.body
@@ -20,5 +19,12 @@ module.exports = (robot) ->
     for att in attachments
       continue unless att.title_link
       text = "#{config.header} #{att.title_link}\n"
-      text += att.text.trim() if att.text
+      text += replace_slackMarkup(att.text.trim()) if att.text
       robot.send {room}, text
+
+replace_slackMarkup = (str) ->
+  str.replace /<([^<>\|]+)\|([^<>\|]+)>/g, (_, url, title) ->
+    return url if url is title
+    return "【#{title}】 "if /https?:\/\/gyazz-clone/.test(url)
+    url = url.replace(/ /g, '%20') if /https?:\/\/.+/.test(url)
+    return url + ' ' + title
