@@ -18,6 +18,7 @@ module.exports = (robot) ->
     res.end 'ok'
 
     for att in attachments
+      continue unless att.title_link
       text = "#{config.header} #{att.title_link}\n"
       text += att.text.trim() if att.text
       robot.send {room}, text
