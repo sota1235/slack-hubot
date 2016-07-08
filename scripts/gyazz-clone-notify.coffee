@@ -15,7 +15,6 @@ module.exports = (robot) ->
     unless text && attachments && attachments.length > 0 && mrkdwn && username
       return res.status(400).send 'bad request'
     room = req.query.room or config.room
-    console.error req.body
     res.end 'ok'
 
     for att in attachments
