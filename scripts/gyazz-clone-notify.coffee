@@ -17,10 +17,13 @@ module.exports = (robot) ->
     res.end 'ok'
 
     for att in attachments
-      continue unless att.title_link
-      text = "#{config.header} #{att.title_link}\n"
-      text += replace_slackMarkup(att.text.trim()) if att.text
-      robot.send {room}, text
+      if att.title_link
+        text = "#{config.header} #{att.title_link}\n"
+        text += replace_slackMarkup(att.text.trim()) if att.text
+        robot.send {room}, text
+      if att.image_url
+        robot.send {room}, att.image_url
+
 
 replace_slackMarkup = (str) ->
   str.replace /<([^<>\|]+)\|([^<>\|]+)>/g, (_, url, title) ->
