@@ -11,7 +11,7 @@ config =
     hear: [ /\[([^\[\]]+)\]/ ]
     reply: (msg) ->
       name = msg.match[1].replace(" ", "%20")
-      [title, wiki] = name.split('::').reverse()
+      [title, wiki] = name.split('/').reverse()
       "https://gyazz-clone.herokuapp.com/#{wiki||'masuilab'}/#{title}"
   カレーメシ:
     hear: [
