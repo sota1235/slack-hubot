@@ -184,7 +184,7 @@ config =
       /わからん/
     ]
     reply: [
-      "ここは、心のリアクションがわかる世界\nhttps://wakaruland.com/?@masui,@napo0703,@dorayaki0,@sasa_sfc,@ryokkkke,@hkrit0,@kir1ca,@ami_nosan,@youngsnow_sfc,@64benzie"
+      "ここは、心のリアクションがわかる世界\nhttps://wakaruland.com/?@masui,@napo0703,@dorayaki0,@sasa_sfc,@ryokkkke,@hkrit0,delta_light,korin"
     ]
   見える化:
     hear: [
