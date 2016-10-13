@@ -184,7 +184,7 @@ config =
       /わからん/
     ]
     reply: [
-      "ここは、心のリアクションがわかる世界\nhttps://wakaruland.com/?@masui,@napo0703,@dorayaki0,@sasa_sfc,@ryokkkke,@hkrit0,delta_light,korin"
+      "ここは、心のリアクションがわかる世界\nhttp://wakaru.3memo.com/masuilab"
     ]
   見える化:
     hear: [
