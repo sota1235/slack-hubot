@@ -29,6 +29,6 @@ module.exports = (robot) ->
 replace_slackMarkup = (str) ->
   str.replace /<([^<>\|]+)\|([^<>\|]+)>/g, (_, url, title) ->
     return url if url is title
-    return "【#{title}】 "if /https?:\/\/gyazz-clone/.test(url)
+    return "【#{title}】 "if /https?:\/\/scrapbox.io/.test(url)
     url = url.replace(/ /g, '%20') if /https?:\/\/.+/.test(url)
     return url + ' ' + title
