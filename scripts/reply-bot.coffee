@@ -111,6 +111,7 @@ config =
       "https://gyazo.com/4782005540d5f7f1f08d7b5a2650d0a7.png"
       "https://gyazo.com/d199cacc0fb79909087cd2224957bbde.png"
       "https://gyazo.com/e3b8c028df43cfaf5c8bff15f2c2bec0.png"
+      "https://i.gyazo.com/0df07d38f8aba8af7371a8d99fbf5215.jpg"
     ]
     ratio: 0.1
   いくつ:
