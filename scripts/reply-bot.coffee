@@ -112,6 +112,7 @@ config =
       "https://gyazo.com/d199cacc0fb79909087cd2224957bbde.png"
       "https://gyazo.com/e3b8c028df43cfaf5c8bff15f2c2bec0.png"
       "https://i.gyazo.com/0df07d38f8aba8af7371a8d99fbf5215.jpg"
+      "ここは、心のリアクションがわかる世界\nhttp://wakaru.3memo.com/masuilab"
     ]
     ratio: 0.1
   いくつ:
@@ -180,13 +181,6 @@ config =
           .join ' '
     ]
     ratio: 0.8
-  わかるらんど:
-    hear: [
-      /わからん/
-    ]
-    reply: [
-      "ここは、心のリアクションがわかる世界\nhttp://wakaru.3memo.com/masuilab"
-    ]
   見える化:
     hear: [
       /見える化/
