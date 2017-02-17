@@ -12,7 +12,7 @@ config =
     reply: (msg) ->
       name = msg.match[1].replace(" ", "%20")
       [title, wiki] = name.split('/').reverse()
-      "https://gyazz-clone.herokuapp.com/#{wiki||'masuilab'}/#{title}"
+      "https://scrapbox.io/#{wiki||'masuilab'}/#{title}"
   カレーメシ:
     hear: [
       /カレー/i
