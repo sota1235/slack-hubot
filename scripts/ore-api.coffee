@@ -15,7 +15,7 @@ urlExpander = require 'expand-url'
 config =
   url: 'https://ore-api.herokuapp.com'
   slack:
-    room: "#ore"
+    room: "ore"
 
 module.exports = (robot) ->
 
@@ -24,7 +24,7 @@ module.exports = (robot) ->
   if process.env.NODE_ENV isnt 'production'
     socket.on 'connect', ->
       debug "socket.io connect!!"
-      robot.send {room: "#test"}, "socket.io 接続 - #{config.url}"
+      robot.send {room: "test"}, "socket.io 接続 - #{config.url}"
 
   get_activity = (type, screen_name, xid, callback = ->) ->
     robot.http("#{config.url}/#{screen_name}/#{type}.json?xid=#{xid}").get() (err, res, body) ->
@@ -79,10 +79,8 @@ module.exports = (robot) ->
       if last_steps > current_steps
         last_steps = 0
       new_steps = current_steps - last_steps
-      if new_steps > 0
-        txt = "@#{event.screen_name} が#{new_steps}歩移動しました (本日合計#{current_steps}歩 #{move.details.km}km)"
-      else
-        txt = "@#{event.screen_name} が活発に活動しています"
+      return unless new_steps > 0
+      txt = "@#{event.screen_name} が#{new_steps}歩移動しました (本日合計#{current_steps}歩 #{move.details.km}km)"
       robot.send config.slack, txt
 
   socket.on 'move', (event) ->
@@ -96,11 +94,9 @@ module.exports = (robot) ->
       if err or !work.details?
         debug "no workout data in event"
         return
-      txt = switch event.action
-        when 'creation'
-          "@#{event.screen_name} が運動しました (#{work.title} #{work.details?.km}km #{Math.floor work.details?.calories}カロリー)"
-        when 'updation'
-          "@#{event.screen_name} が運動しています (#{work.title} #{work.details?.km}km)"
+      if event.action isnt 'creation'
+        return
+      txt = "@#{event.screen_name} が運動しました (#{work.title} #{work.details?.km}km #{Math.floor work.details?.calories}カロリー)"
       if work.image?.length > 0
         shortUrl = "http://jawbone.com#{work.image}"
         urlExpander.expand shortUrl, (err, imgUrl) ->
